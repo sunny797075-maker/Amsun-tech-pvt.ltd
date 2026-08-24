@@ -459,40 +459,42 @@ function HeroOfficeBackground() {
 
   return (
     <div className="hero-office-bg" aria-hidden="true">
-      {showPreviewFallback && heroVideoSources.previewUrl ? (
-        <iframe
-          key={previewLoopKey}
-          className="hero-drive-preview"
-          src={`${heroVideoSources.previewUrl}?autoplay=1&mute=1&loop=1`}
-          title="Amsun Technology project confirmation video"
-          allow="autoplay; encrypted-media; fullscreen"
-          allowFullScreen
-        />
-      ) : (
-        <video
-          ref={videoRef}
-          className="hero-real-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          onCanPlay={(event) => {
-            event.currentTarget.volume = 0.08;
-            event.currentTarget.play().catch(() => {
+      <div className="hero-video-frame">
+        {showPreviewFallback && heroVideoSources.previewUrl ? (
+          <iframe
+            key={previewLoopKey}
+            className="hero-drive-preview"
+            src={`${heroVideoSources.previewUrl}?autoplay=1&mute=1&loop=1`}
+            title="Amsun Technology project confirmation video"
+            allow="autoplay; encrypted-media; fullscreen"
+            allowFullScreen
+          />
+        ) : (
+          <video
+            ref={videoRef}
+            className="hero-real-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onCanPlay={(event) => {
+              event.currentTarget.volume = 0.08;
+              event.currentTarget.play().catch(() => {
+                setShowPreviewFallback(Boolean(heroVideoSources.previewUrl));
+              });
+            }}
+            onEnded={(event) => replayVideo(event.currentTarget)}
+            onError={() => {
               setShowPreviewFallback(Boolean(heroVideoSources.previewUrl));
-            });
-          }}
-          onEnded={(event) => replayVideo(event.currentTarget)}
-          onError={() => {
-            setShowPreviewFallback(Boolean(heroVideoSources.previewUrl));
-          }}
-        >
-          {heroVideoSources.streamUrls.map((sourceUrl) => (
-            <source key={sourceUrl} src={sourceUrl} />
-          ))}
-        </video>
-      )}
+            }}
+          >
+            {heroVideoSources.streamUrls.map((sourceUrl) => (
+              <source key={sourceUrl} src={sourceUrl} />
+            ))}
+          </video>
+        )}
+      </div>
     </div>
   );
 }
