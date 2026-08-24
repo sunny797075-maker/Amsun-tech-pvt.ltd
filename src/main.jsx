@@ -388,7 +388,7 @@ function Hero() {
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/60 bg-white/70 px-3 py-2 text-sm font-semibold text-cyan-700 shadow-enterprise backdrop-blur">
             <Sparkles size={16} /> Secure AI-Powered ERP, Cloud & Cybersecurity Solutions
           </div>
-          <h1 className="mt-7 max-w-5xl font-heading text-4xl font-extrabold leading-tight text-navy-950 [text-shadow:0_8px_28px_rgba(255,255,255,.82)] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-7 max-w-5xl font-heading text-4xl font-extrabold leading-tight text-navy-950 [text-shadow:0_2px_14px_rgba(255,255,255,.9)] sm:text-5xl lg:text-6xl">
             Transform Your Business with Secure AI-Powered ERP & Cloud Solutions
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl">
