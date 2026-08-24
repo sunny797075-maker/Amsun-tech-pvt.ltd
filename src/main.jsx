@@ -30,7 +30,6 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { GOOGLE_DRIVE_VIDEO_URL } from "./config/video.js";
 import { caseStudies, demos, faqs, industries, navItems, services, technologies, testimonials } from "./data/siteData.jsx";
 import "./styles.css";
 
@@ -40,25 +39,6 @@ function cn(...classes) {
 
 function slugify(value) {
   return value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
-
-function getGoogleDriveVideoSources(url) {
-  const fileId = url.match(/\/file\/d\/([^/]+)/)?.[1] || url.match(/[?&]id=([^&]+)/)?.[1];
-
-  if (!fileId) {
-    return {
-      previewUrl: "",
-      streamUrls: [url],
-    };
-  }
-
-  return {
-    previewUrl: `https://drive.google.com/file/d/${fileId}/preview`,
-    streamUrls: [
-      `https://drive.usercontent.google.com/download?id=${fileId}&export=download`,
-      `https://drive.google.com/uc?export=download&id=${fileId}`,
-    ],
-  };
 }
 
 function getDemoVideoSources(url) {
@@ -402,9 +382,7 @@ function Home() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-slate-50 text-navy-950">
-      <HeroOfficeBackground />
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-cyan-100/20" />
+      <HomepageImageSlider />
       <div className="mx-auto flex min-h-[calc(100vh-72px)] max-w-7xl items-center px-4 py-20 sm:px-6 lg:px-8">
         <Reveal className="relative z-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/60 bg-white/70 px-3 py-2 text-sm font-semibold text-cyan-700 shadow-enterprise backdrop-blur">
@@ -432,108 +410,62 @@ function Hero() {
   );
 }
 
-function HeroOfficeBackground() {
-  const videoRef = useRef(null);
-  const [showPreviewFallback, setShowPreviewFallback] = useState(false);
-  const [previewLoopKey, setPreviewLoopKey] = useState(0);
-  const heroVideoSources = getGoogleDriveVideoSources(GOOGLE_DRIVE_VIDEO_URL);
+const homepageImages = Array.from(
+  { length: 7 },
+  (_, index) => `${import.meta.env.BASE_URL}images/homepage-image-${index + 1}.png`,
+);
+
+function HomepageImageSlider() {
+  const reduceMotion = useReducedMotion();
+  const [loadedImages, setLoadedImages] = useState([]);
+  const [activeImage, setActiveImage] = useState(0);
 
   useEffect(() => {
-    const video = videoRef.current;
+    let isCurrent = true;
 
-    if (!video || showPreviewFallback) {
-      return;
-    }
-
-    const fallbackTimer = window.setTimeout(() => {
-      if (video.readyState < 2) {
-        setShowPreviewFallback(Boolean(heroVideoSources.previewUrl));
+    Promise.all(
+      homepageImages.map((source) => new Promise((resolve) => {
+        const image = new globalThis.Image();
+        image.onload = () => resolve(source);
+        image.onerror = () => resolve(null);
+        image.src = source;
+      })),
+    ).then((availableImages) => {
+      if (isCurrent) {
+        setLoadedImages(availableImages.filter(Boolean));
       }
-    }, 10);
-
-    video.defaultMuted = true;
-    video.muted = true;
-    video.volume = 0.08;
-    video.loop = true;
-    video.playsInline = true;
-    video.play().catch(() => {
-      setShowPreviewFallback(Boolean(heroVideoSources.previewUrl));
     });
 
-    const enableLowVolumeAudio = () => {
-      video.muted = false;
-      video.volume = 0.08;
-      video.play().catch(() => {
-        video.muted = true;
-      });
-    };
-
-    window.addEventListener("pointerdown", enableLowVolumeAudio, { once: true });
-
     return () => {
-      window.clearTimeout(fallbackTimer);
-      window.removeEventListener("pointerdown", enableLowVolumeAudio);
+      isCurrent = false;
     };
-  }, [heroVideoSources.previewUrl, showPreviewFallback]);
+  }, []);
 
   useEffect(() => {
-    if (!showPreviewFallback) {
+    if (loadedImages.length < 2 || reduceMotion) {
       return undefined;
     }
 
-    // Google Drive's preview embed does not reliably honor the native loop attribute.
-    const previewLoopTimer = window.setInterval(() => {
-      setPreviewLoopKey((currentKey) => currentKey + 1);
-    }, 19500);
+    const imageTimer = window.setInterval(() => {
+      setActiveImage((currentImage) => (currentImage + 1) % loadedImages.length);
+    }, 4500);
 
-    return () => window.clearInterval(previewLoopTimer);
-  }, [showPreviewFallback]);
-
-  const replayVideo = (video) => {
-    video.currentTime = 0;
-    video.play().catch(() => {
-      setShowPreviewFallback(Boolean(heroVideoSources.previewUrl));
-    });
-  };
+    return () => window.clearInterval(imageTimer);
+  }, [loadedImages.length, reduceMotion]);
 
   return (
-    <div className="hero-office-bg" aria-hidden="true">
-      <div className="hero-video-frame">
-        {showPreviewFallback && heroVideoSources.previewUrl ? (
-          <iframe
-            key={previewLoopKey}
-            className="hero-drive-preview"
-            src={`${heroVideoSources.previewUrl}?autoplay=1&mute=1&loop=1`}
-            title="Amsun Technology project confirmation video"
-            allow="autoplay; encrypted-media; fullscreen"
-            allowFullScreen
-          />
-        ) : (
-          <video
-            ref={videoRef}
-            className="hero-real-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            onCanPlay={(event) => {
-              event.currentTarget.volume = 0.08;
-              event.currentTarget.play().catch(() => {
-                setShowPreviewFallback(Boolean(heroVideoSources.previewUrl));
-              });
-            }}
-            onEnded={(event) => replayVideo(event.currentTarget)}
-            onError={() => {
-              setShowPreviewFallback(Boolean(heroVideoSources.previewUrl));
-            }}
-          >
-            {heroVideoSources.streamUrls.map((sourceUrl) => (
-              <source key={sourceUrl} src={sourceUrl} />
-            ))}
-          </video>
-        )}
-      </div>
+    <div className="homepage-image-slider" aria-hidden="true">
+      {loadedImages.map((source, index) => (
+        <img
+          key={source}
+          className={cn("homepage-image-slide", index === activeImage && "homepage-image-slide-active")}
+          src={source}
+          alt=""
+          decoding="async"
+          fetchPriority={index === 0 ? "high" : "auto"}
+        />
+      ))}
+      <div className="homepage-image-overlay" />
     </div>
   );
 }
