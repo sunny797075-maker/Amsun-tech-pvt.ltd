@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://amsuntechnology.com/sitemap.xml
