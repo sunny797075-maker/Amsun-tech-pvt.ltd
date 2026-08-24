@@ -57,6 +57,33 @@ function getGoogleDriveVideoSources(url) {
   };
 }
 
+function getDemoVideoSources(url) {
+  try {
+    const parsedUrl = new globalThis.URL(url);
+    const isGoogleDrive = parsedUrl.hostname === "drive.google.com" || parsedUrl.hostname === "drive.usercontent.google.com";
+
+    if (!isGoogleDrive) {
+      return { streamUrls: [], fallbackUrl: url };
+    }
+
+    const fileId = parsedUrl.pathname.match(/\/file\/d\/([^/]+)/)?.[1] || parsedUrl.searchParams.get("id");
+
+    if (!fileId) {
+      return { streamUrls: [], fallbackUrl: url };
+    }
+
+    return {
+      streamUrls: [
+        `https://drive.usercontent.google.com/download?id=${fileId}&export=download`,
+        `https://drive.google.com/uc?export=download&id=${fileId}`,
+      ],
+      fallbackUrl: `https://drive.google.com/file/d/${fileId}/preview`,
+    };
+  } catch {
+    return { streamUrls: [], fallbackUrl: url };
+  }
+}
+
 function App() {
   const [dark, setDark] = useState(() => localStorage.getItem("theme") !== "light");
   const routerBasename = import.meta.env.BASE_URL === "/" ? "/" : import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -1221,6 +1248,9 @@ function DemoCard({ demo, onPlay, delay }) {
 }
 
 function VideoModal({ demo, onClose }) {
+  const videoSources = getDemoVideoSources(demo.video);
+  const [useFallback, setUseFallback] = useState(videoSources.streamUrls.length === 0);
+
   return (
     <div className="fixed inset-0 z-[80] grid place-items-center bg-navy-950/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
       <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} className="max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-navy-900">
@@ -1229,7 +1259,13 @@ function VideoModal({ demo, onClose }) {
           <button className="icon-button" onClick={onClose} aria-label="Close video"><X size={20} /></button>
         </div>
         <div className="responsive-video-frame">
-          <iframe src={demo.video} title={demo.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+          {useFallback ? (
+            <iframe src={videoSources.fallbackUrl} title={demo.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+          ) : (
+            <video controls playsInline preload="metadata" onError={() => setUseFallback(true)}>
+              {videoSources.streamUrls.map((sourceUrl) => <source key={sourceUrl} src={sourceUrl} type="video/mp4" />)}
+            </video>
+          )}
         </div>
       </motion.div>
     </div>
