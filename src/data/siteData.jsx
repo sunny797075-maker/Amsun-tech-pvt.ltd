@@ -107,6 +107,10 @@ export const demos = [
   video:
     title === "Odoo ERP Demo"
       ? "https://drive.google.com/file/d/1AWULuRHl7wPUBXgXTGonk5re63u8-Xyy/preview"
+      : title === "CRM Demo"
+        ? "https://drive.google.com/file/d/1pvF5dbCNGg2EXLfy5JYWnnrZIrvLUePn/preview"
+      : title === "Inventory Management"
+        ? "https://drive.google.com/file/d/1our5YMEyvvuVcwP8W6AgmCVajjFVjRKP/preview"
       : "https://www.youtube.com/embed/ysz5S6PUM-U",
   accent: ["cyan", "blue", "teal", "indigo"][index % 4],
 }));
