@@ -47,24 +47,26 @@ function getDemoVideoSources(url) {
     const isGoogleDrive = parsedUrl.hostname === "drive.google.com" || parsedUrl.hostname === "drive.usercontent.google.com";
 
     if (!isGoogleDrive) {
-      return { streamUrls: [], fallbackUrl: url };
+      return { isGoogleDrive: false, streamUrls: [], fallbackUrl: url, driveFileUrl: url };
     }
 
     const fileId = parsedUrl.pathname.match(/\/file\/d\/([^/]+)/)?.[1] || parsedUrl.searchParams.get("id");
 
     if (!fileId) {
-      return { streamUrls: [], fallbackUrl: url };
+      return { isGoogleDrive: true, streamUrls: [], fallbackUrl: url, driveFileUrl: url };
     }
 
     return {
+      isGoogleDrive: true,
       streamUrls: [
-        `https://drive.usercontent.google.com/download?id=${fileId}&export=download`,
+        `https://drive.usercontent.google.com/download?id=${fileId}&export=download&confirm=t`,
         `https://drive.google.com/uc?export=download&id=${fileId}`,
       ],
       fallbackUrl: `https://drive.google.com/file/d/${fileId}/preview`,
+      driveFileUrl: `https://drive.google.com/file/d/${fileId}/view`,
     };
   } catch {
-    return { streamUrls: [], fallbackUrl: url };
+    return { isGoogleDrive: false, streamUrls: [], fallbackUrl: url, driveFileUrl: url };
   }
 }
 
@@ -1224,6 +1226,7 @@ function VideoModal({ demo, onClose }) {
   const videoSources = getDemoVideoSources(demo.video);
   const videoRef = useRef(null);
   const [useFallback, setUseFallback] = useState(videoSources.streamUrls.length === 0);
+  const [streamUnavailable, setStreamUnavailable] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -1270,7 +1273,7 @@ function VideoModal({ demo, onClose }) {
 
   return (
     <div className="fixed inset-0 z-[80] grid place-items-center bg-navy-950/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
-      <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} className="max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-navy-900">
+      <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} className="demo-video-modal w-full max-w-5xl rounded-2xl bg-white shadow-2xl dark:bg-navy-900">
         <div className="flex items-center justify-between border-b border-slate-200 p-4 dark:border-white/10">
           <div><h3 className="font-heading text-xl font-bold">{demo.title}</h3><p className="text-sm text-slate-500 dark:text-slate-300">Embedded demo video</p></div>
           <button className="icon-button" onClick={onClose} aria-label="Close video"><X size={20} /></button>
@@ -1279,13 +1282,24 @@ function VideoModal({ demo, onClose }) {
           <div className="responsive-video-frame">
             {useFallback ? (
               <iframe src={videoSources.fallbackUrl} title={demo.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+            ) : streamUnavailable ? (
+              <div className="demo-video-unavailable">
+                <p>Video playback is unavailable in this browser.</p>
+                <a href={videoSources.driveFileUrl} target="_blank" rel="noreferrer">Open demo video</a>
+              </div>
             ) : (
               <video
                 ref={videoRef}
                 playsInline
-                preload="auto"
+                preload="metadata"
                 onClick={togglePlayback}
-                onError={() => setUseFallback(true)}
+                onError={() => {
+                  if (videoSources.isGoogleDrive) {
+                    setStreamUnavailable(true);
+                  } else {
+                    setUseFallback(true);
+                  }
+                }}
                 onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
                 onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
                 onPlay={() => setIsPlaying(true)}
@@ -1295,7 +1309,7 @@ function VideoModal({ demo, onClose }) {
               </video>
             )}
           </div>
-          {!useFallback && (
+          {!useFallback && !streamUnavailable && (
             <div className="demo-video-controls">
               <button type="button" className="demo-video-control" onClick={togglePlayback} aria-label={isPlaying ? "Pause video" : "Play video"}>
                 {isPlaying ? <Pause size={19} /> : <Play size={19} />}

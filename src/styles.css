@@ -164,6 +164,14 @@ body {
   box-shadow: 0 20px 56px rgba(2, 10, 24, .16);
 }
 
+.demo-video-modal {
+  max-height: 92vh;
+  max-height: 92dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
 .responsive-video-player {
   width: min(100%, calc((100vh - 8rem) * 16 / 9));
   width: min(100%, calc((100dvh - 12rem) * 16 / 9));
@@ -188,6 +196,24 @@ body {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.demo-video-unavailable {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-content: center;
+  gap: .75rem;
+  padding: 1.5rem;
+  color: #e2e8f0;
+  text-align: center;
+}
+
+.demo-video-unavailable a {
+  color: #8cf3ff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: .2em;
 }
 
 .responsive-video-frame video {
