@@ -59,6 +59,7 @@ function getGoogleDriveVideoSources(url) {
 
 function App() {
   const [dark, setDark] = useState(() => localStorage.getItem("theme") !== "light");
+  const routerBasename = import.meta.env.BASE_URL === "/" ? "/" : import.meta.env.BASE_URL.replace(/\/$/, "");
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
@@ -66,7 +67,7 @@ function App() {
   }, [dark]);
 
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter basename={routerBasename}>
       <div className="min-h-screen bg-slate-50 font-body text-slate-900 antialiased transition-colors dark:bg-navy-950 dark:text-white">
         <SeoUpdater />
         <ScrollToTop />
