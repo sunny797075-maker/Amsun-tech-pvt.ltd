@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDir = path.join(root, "dist");
 const port = Number(process.env.PORT || 5173);
+const basePath = "/Amsun-tech-pvt.ltd";
 
 const mimeTypes = {
   ".css": "text/css; charset=utf-8",
@@ -19,7 +20,10 @@ const mimeTypes = {
 };
 
 function safePath(urlPath) {
-  const decodedPath = decodeURIComponent(urlPath.split("?")[0]);
+  let decodedPath = decodeURIComponent(urlPath.split("?")[0]);
+  if (decodedPath === basePath || decodedPath.startsWith(`${basePath}/`)) {
+    decodedPath = decodedPath.slice(basePath.length) || "/";
+  }
   const normalizedPath = path.normalize(decodedPath).replace(/^(\.\.[/\\])+/, "");
   return path.join(distDir, normalizedPath === "/" ? "index.html" : normalizedPath);
 }

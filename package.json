@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://amsuntechnology.github.io/amsun-technology-website/",
+  "homepage": "https://sunny797075-maker.github.io/Amsun-tech-pvt.ltd/",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build && node scripts/prepare-sites-output.mjs",
