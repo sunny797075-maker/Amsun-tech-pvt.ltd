@@ -150,8 +150,12 @@ function ScrollToTop() {
 function Navbar({ dark, setDark }) {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const location = useLocation();
-  useEffect(() => setOpen(false), [location.pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setMobileServicesOpen(false);
+  }, [location.pathname]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-white/80 shadow-sm backdrop-blur-xl dark:bg-navy-950/80">
@@ -245,27 +249,44 @@ function Navbar({ dark, setDark }) {
           <Link to="/contact" className="hidden rounded-md bg-cyanbrand-500 px-4 py-2 text-sm font-bold text-navy-950 shadow-glow transition hover:-translate-y-0.5 sm:inline-flex">
             Book Consultation
           </Link>
-          <button className="icon-button lg:hidden" onClick={() => setOpen(!open)} aria-label="Open menu">
+          <button className="icon-button lg:hidden" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
       {open && (
-        <div className="border-t border-slate-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-navy-950 lg:hidden">
-          <div className="grid gap-1">
+        <div className="max-h-[calc(100vh-76px)] overflow-y-auto overscroll-contain border-t border-slate-200 bg-white px-4 py-3 shadow-enterprise dark:border-white/10 dark:bg-navy-950 lg:hidden">
+          <div className="grid gap-1 pb-6">
             {navItems.map(([label, href]) => (
               <div key={href}>
                 {label === "Home" ? (
-                  <Link to="/" className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-white/[0.08]">
+                  <Link to="/" onClick={() => setOpen(false)} className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-white/[0.08]">
                     Home
                   </Link>
+                ) : label === "Services" ? (
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-sm font-semibold hover:bg-slate-100 dark:hover:bg-white/[0.08]"
+                    onClick={() => setMobileServicesOpen((current) => !current)}
+                    aria-expanded={mobileServicesOpen}
+                  >
+                    <span>Services</span>
+                    <ChevronDown size={17} className={cn("transition-transform", mobileServicesOpen && "rotate-180")} />
+                  </button>
                 ) : (
-                  <NavLink to={href} className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-white/[0.08]">
+                  <NavLink to={href} onClick={() => setOpen(false)} className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-white/[0.08]">
                     {label}
                   </NavLink>
                 )}
-                {label === "Services" && (
+                {label === "Services" && mobileServicesOpen && (
                   <div className="ml-3 grid gap-1 border-l border-slate-200 pl-3 dark:border-white/10">
+                    <Link
+                      to="/services"
+                      onClick={() => setOpen(false)}
+                      className="rounded-md px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/[0.08]"
+                    >
+                      All Services
+                    </Link>
                     {services.map((service) => (
                       <Link
                         key={service.title}
