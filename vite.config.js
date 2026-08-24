@@ -5,5 +5,5 @@ export default defineConfig(({ mode }) => ({
   plugins: [react()],
   // Root-relative assets keep client-side routes working on localhost, AWS and Hostinger.
   // Use the dedicated mode only when publishing beneath the GitHub repository path.
-  base: mode === "github-pages" ? "/amsun-technology-website/" : "/",
+  base: mode === "github-pages" ? "/Amsun-tech-pvt.ltd/" : "/",
 }));
