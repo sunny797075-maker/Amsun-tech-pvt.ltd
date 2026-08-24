@@ -14,15 +14,19 @@ import {
   LockKeyhole,
   Mail,
   MapPin,
+  Maximize2,
   Menu,
   MessageCircle,
   Moon,
   Network,
+  Pause,
   Play,
   Search,
   ShieldCheck,
   Sparkles,
   Sun,
+  Volume2,
+  VolumeX,
   X,
   Zap,
 } from "lucide-react";
@@ -82,6 +86,14 @@ function getDemoVideoSources(url) {
   } catch {
     return { streamUrls: [], fallbackUrl: url };
   }
+}
+
+function formatVideoTime(value) {
+  if (!Number.isFinite(value)) return "0:00";
+
+  const minutes = Math.floor(value / 60);
+  const seconds = Math.floor(value % 60).toString().padStart(2, "0");
+  return `${minutes}:${seconds}`;
 }
 
 function App() {
@@ -1249,7 +1261,51 @@ function DemoCard({ demo, onPlay, delay }) {
 
 function VideoModal({ demo, onClose }) {
   const videoSources = getDemoVideoSources(demo.video);
+  const videoRef = useRef(null);
   const [useFallback, setUseFallback] = useState(videoSources.streamUrls.length === 0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const togglePlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  };
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+  };
+
+  const seekVideo = (event) => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const nextTime = Number(event.target.value);
+    video.currentTime = nextTime;
+    setCurrentTime(nextTime);
+  };
+
+  const openFullscreen = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitEnterFullscreen) {
+      video.webkitEnterFullscreen();
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-[80] grid place-items-center bg-navy-950/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
@@ -1258,13 +1314,49 @@ function VideoModal({ demo, onClose }) {
           <div><h3 className="font-heading text-xl font-bold">{demo.title}</h3><p className="text-sm text-slate-500 dark:text-slate-300">Embedded demo video</p></div>
           <button className="icon-button" onClick={onClose} aria-label="Close video"><X size={20} /></button>
         </div>
-        <div className="responsive-video-frame">
-          {useFallback ? (
-            <iframe src={videoSources.fallbackUrl} title={demo.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
-          ) : (
-            <video controls playsInline preload="metadata" onError={() => setUseFallback(true)}>
-              {videoSources.streamUrls.map((sourceUrl) => <source key={sourceUrl} src={sourceUrl} type="video/mp4" />)}
-            </video>
+        <div className="responsive-video-player">
+          <div className="responsive-video-frame">
+            {useFallback ? (
+              <iframe src={videoSources.fallbackUrl} title={demo.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+            ) : (
+              <video
+                ref={videoRef}
+                playsInline
+                preload="auto"
+                onClick={togglePlayback}
+                onError={() => setUseFallback(true)}
+                onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+                onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+              >
+                {videoSources.streamUrls.map((sourceUrl) => <source key={sourceUrl} src={sourceUrl} type="video/mp4" />)}
+              </video>
+            )}
+          </div>
+          {!useFallback && (
+            <div className="demo-video-controls">
+              <button type="button" className="demo-video-control" onClick={togglePlayback} aria-label={isPlaying ? "Pause video" : "Play video"}>
+                {isPlaying ? <Pause size={19} /> : <Play size={19} />}
+              </button>
+              <input
+                className="demo-video-progress"
+                type="range"
+                min="0"
+                max={duration || 0.1}
+                step="0.1"
+                value={Math.min(currentTime, duration || 0.1)}
+                onChange={seekVideo}
+                aria-label="Video progress"
+              />
+              <span className="demo-video-time">{formatVideoTime(currentTime)} / {formatVideoTime(duration)}</span>
+              <button type="button" className="demo-video-control" onClick={toggleMute} aria-label={isMuted ? "Unmute video" : "Mute video"}>
+                {isMuted ? <VolumeX size={19} /> : <Volume2 size={19} />}
+              </button>
+              <button type="button" className="demo-video-control" onClick={openFullscreen} aria-label="Open video fullscreen">
+                <Maximize2 size={19} />
+              </button>
+            </div>
           )}
         </div>
       </motion.div>
