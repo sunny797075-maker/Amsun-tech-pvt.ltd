@@ -255,18 +255,18 @@ function Navbar({ dark, setDark }) {
         </div>
       </nav>
       {open && (
-        <div className="max-h-[calc(100vh-76px)] overflow-y-auto overscroll-contain border-t border-slate-200 bg-white px-4 py-3 shadow-enterprise dark:border-white/10 dark:bg-navy-950 lg:hidden">
+        <div className="max-h-[calc(100vh-76px)] overflow-y-auto overscroll-contain border-t border-slate-200/70 bg-white/68 px-4 py-3 shadow-enterprise backdrop-blur-2xl dark:border-white/10 dark:bg-navy-950/72 lg:hidden">
           <div className="grid gap-1 pb-6">
             {navItems.map(([label, href]) => (
               <div key={href}>
                 {label === "Home" ? (
-                  <Link to="/" onClick={() => setOpen(false)} className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-white/[0.08]">
+                  <Link to="/" onClick={() => setOpen(false)} className="block rounded-md bg-white/64 px-3 py-3 text-sm font-semibold shadow-sm backdrop-blur hover:bg-white/85 dark:bg-navy-900/64 dark:hover:bg-navy-900/85">
                     Home
                   </Link>
                 ) : label === "Services" ? (
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-sm font-semibold hover:bg-slate-100 dark:hover:bg-white/[0.08]"
+                    className="flex w-full items-center justify-between rounded-md bg-white/64 px-3 py-3 text-left text-sm font-semibold shadow-sm backdrop-blur hover:bg-white/85 dark:bg-navy-900/64 dark:hover:bg-navy-900/85"
                     onClick={() => setMobileServicesOpen((current) => !current)}
                     aria-expanded={mobileServicesOpen}
                   >
@@ -274,7 +274,7 @@ function Navbar({ dark, setDark }) {
                     <ChevronDown size={17} className={cn("transition-transform", mobileServicesOpen && "rotate-180")} />
                   </button>
                 ) : (
-                  <NavLink to={href} onClick={() => setOpen(false)} className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-white/[0.08]">
+                  <NavLink to={href} onClick={() => setOpen(false)} className="block rounded-md bg-white/64 px-3 py-3 text-sm font-semibold shadow-sm backdrop-blur hover:bg-white/85 dark:bg-navy-900/64 dark:hover:bg-navy-900/85">
                     {label}
                   </NavLink>
                 )}
@@ -283,7 +283,7 @@ function Navbar({ dark, setDark }) {
                     <Link
                       to="/services"
                       onClick={() => setOpen(false)}
-                      className="rounded-md px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/[0.08]"
+                      className="rounded-md bg-white/50 px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur hover:bg-white/80 dark:bg-navy-900/55 dark:text-slate-200 dark:hover:bg-navy-900/80"
                     >
                       All Services
                     </Link>
@@ -292,7 +292,7 @@ function Navbar({ dark, setDark }) {
                         key={service.title}
                         to={`/services/${slugify(service.title)}`}
                         onClick={() => setOpen(false)}
-                        className="rounded-md px-3 py-2 text-sm text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.08]"
+                        className="rounded-md bg-white/42 px-3 py-2 text-sm text-slate-700 shadow-sm backdrop-blur hover:bg-white/75 dark:bg-navy-900/48 dark:text-slate-200 dark:hover:bg-navy-900/75"
                       >
                         {service.title}
                       </Link>

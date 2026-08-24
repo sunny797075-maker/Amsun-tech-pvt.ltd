@@ -121,18 +121,22 @@ body {
 
 .hero-real-video {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
   width: 100%;
   height: 100%;
+  transform: translate(-50%, -50%);
   object-fit: contain;
   opacity: .92;
 }
 
 .hero-drive-preview {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
   width: 100%;
   height: 100%;
+  transform: translate(-50%, -50%);
   border: 0;
   opacity: .92;
   pointer-events: none;
@@ -142,7 +146,7 @@ body {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: min(68vh, 720px);
+  max-height: min(70vh, 720px);
   background: #020617;
 }
 
@@ -156,8 +160,17 @@ body {
 }
 
 @media (max-width: 640px) {
+  .hero-real-video,
+  .hero-drive-preview {
+    width: 100vw;
+    height: min(56.25vw, 42vh);
+  }
+
   .responsive-video-frame {
-    max-height: 58vh;
+    width: min(calc(100vw - 1rem), calc((100vh - 9rem) * 16 / 9));
+    max-width: 100%;
+    max-height: calc(100vh - 9rem);
+    margin-inline: auto;
   }
 }
 
