@@ -410,36 +410,62 @@ function Hero() {
   );
 }
 
-const homepageImages = Array.from(
-  { length: 7 },
-  (_, index) => `${import.meta.env.BASE_URL}images/homepage-image-${index + 1}.png`,
-);
+const homepageImages = [
+  "home page 1.png.png",
+  "homepage2.jpg.png",
+  "homepage3.jpg.jpeg",
+  "homepage4.jpg.png",
+  "homepage5.jpg.png",
+  "homepage6.jpg.png",
+  "homepage7.jpg.png",
+  "omepage8.jpg.jpeg",
+  "homepage9.jpg.png",
+].map((fileName) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(fileName)}`);
 
 function HomepageImageSlider() {
   const reduceMotion = useReducedMotion();
   const [loadedImages, setLoadedImages] = useState([]);
-  const [activeImage, setActiveImage] = useState(0);
+  const [activeImage, setActiveImage] = useState("");
 
   useEffect(() => {
     let isCurrent = true;
+    const imageLoaders = [];
 
-    Promise.all(
-      homepageImages.map((source) => new Promise((resolve) => {
-        const image = new globalThis.Image();
-        image.onload = () => resolve(source);
-        image.onerror = () => resolve(null);
-        image.src = source;
-      })),
-    ).then((availableImages) => {
-      if (isCurrent) {
-        setLoadedImages(availableImages.filter(Boolean));
-      }
-    });
+    const loadImage = (source) => {
+      const image = new globalThis.Image();
+      image.decoding = "async";
+      image.onload = () => {
+        if (!isCurrent) return;
+
+        setLoadedImages((currentImages) => {
+          if (currentImages.includes(source)) return currentImages;
+          return [...currentImages, source].sort((first, second) => homepageImages.indexOf(first) - homepageImages.indexOf(second));
+        });
+      };
+      image.src = source;
+      imageLoaders.push(image);
+    };
+
+    loadImage(homepageImages[0]);
+    const remainingImageTimer = window.setTimeout(() => {
+      homepageImages.slice(1).forEach(loadImage);
+    }, 250);
 
     return () => {
       isCurrent = false;
+      window.clearTimeout(remainingImageTimer);
+      imageLoaders.forEach((image) => {
+        image.onload = null;
+        image.onerror = null;
+      });
     };
   }, []);
+
+  useEffect(() => {
+    if (!activeImage && loadedImages.length) {
+      setActiveImage(loadedImages[0]);
+    }
+  }, [activeImage, loadedImages]);
 
   useEffect(() => {
     if (loadedImages.length < 2 || reduceMotion) {
@@ -447,7 +473,10 @@ function HomepageImageSlider() {
     }
 
     const imageTimer = window.setInterval(() => {
-      setActiveImage((currentImage) => (currentImage + 1) % loadedImages.length);
+      setActiveImage((currentImage) => {
+        const currentIndex = loadedImages.indexOf(currentImage);
+        return loadedImages[(currentIndex + 1) % loadedImages.length];
+      });
     }, 4500);
 
     return () => window.clearInterval(imageTimer);
@@ -458,7 +487,7 @@ function HomepageImageSlider() {
       {loadedImages.map((source, index) => (
         <img
           key={source}
-          className={cn("homepage-image-slide", index === activeImage && "homepage-image-slide-active")}
+          className={cn("homepage-image-slide", source === activeImage && "homepage-image-slide-active")}
           src={source}
           alt=""
           decoding="async"
