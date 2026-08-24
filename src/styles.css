@@ -155,6 +155,15 @@ body {
     linear-gradient(0deg, rgba(248,250,252,.16), transparent 34%);
 }
 
+.hero-copy-surface {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, .88);
+  border-left: 4px solid #09d3f2;
+  border-radius: .5rem;
+  background: rgba(255, 255, 255, .78);
+  box-shadow: 0 20px 56px rgba(2, 10, 24, .16);
+}
+
 .responsive-video-player {
   width: min(100%, calc((100vh - 8rem) * 16 / 9));
   width: min(100%, calc((100dvh - 12rem) * 16 / 9));
@@ -234,6 +243,11 @@ body {
 
   .homepage-image-overlay {
     background: linear-gradient(90deg, rgba(248,250,252,.68) 0%, rgba(248,250,252,.48) 62%, rgba(248,250,252,.16) 100%);
+  }
+
+  .hero-copy-surface {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, .86);
   }
 
   .responsive-video-player {

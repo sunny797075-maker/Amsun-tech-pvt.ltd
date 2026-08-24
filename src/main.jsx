@@ -384,7 +384,7 @@ function Hero() {
     <section className="relative isolate overflow-hidden bg-slate-50 text-navy-950">
       <HomepageImageSlider />
       <div className="mx-auto flex min-h-[calc(100vh-72px)] max-w-7xl items-center px-4 py-20 sm:px-6 lg:px-8">
-        <Reveal className="relative z-10 max-w-3xl">
+        <Reveal className="hero-copy-surface relative z-10 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/60 bg-white/70 px-3 py-2 text-sm font-semibold text-cyan-700 shadow-enterprise backdrop-blur">
             <Sparkles size={16} /> Secure AI-Powered ERP, Cloud & Cybersecurity Solutions
           </div>
