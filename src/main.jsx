@@ -1202,7 +1202,7 @@ function VideoModal({ demo, onClose }) {
     <div className="fixed inset-0 z-[80] grid place-items-center bg-navy-950/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
       <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} className="w-full max-w-4xl overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-navy-900">
         <div className="flex items-center justify-between border-b border-slate-200 p-4 dark:border-white/10">
-          <div><h3 className="font-heading text-xl font-bold">{demo.title}</h3><p className="text-sm text-slate-500 dark:text-slate-300">Placeholder embedded video support</p></div>
+          <div><h3 className="font-heading text-xl font-bold">{demo.title}</h3><p className="text-sm text-slate-500 dark:text-slate-300">Embedded demo video</p></div>
           <button className="icon-button" onClick={onClose} aria-label="Close video"><X size={20} /></button>
         </div>
         <div className="aspect-video bg-navy-950">

@@ -104,7 +104,10 @@ export const demos = [
   category,
   description,
   features,
-  video: "https://www.youtube.com/embed/ysz5S6PUM-U",
+  video:
+    title === "Odoo ERP Demo"
+      ? "https://drive.google.com/file/d/1AWULuRHl7wPUBXgXTGonk5re63u8-Xyy/preview"
+      : "https://www.youtube.com/embed/ysz5S6PUM-U",
   accent: ["cyan", "blue", "teal", "indigo"][index % 4],
 }));
 
