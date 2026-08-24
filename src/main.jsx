@@ -14,19 +14,15 @@ import {
   LockKeyhole,
   Mail,
   MapPin,
-  Maximize2,
   Menu,
   MessageCircle,
   Moon,
   Network,
-  Pause,
   Play,
   Search,
   ShieldCheck,
   Sparkles,
   Sun,
-  Volume2,
-  VolumeX,
   X,
   Zap,
 } from "lucide-react";
@@ -41,79 +37,18 @@ function slugify(value) {
   return value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-function getGoogleDriveFileId(url) {
+function getDrivePreviewUrl(url) {
   if (!url) return "";
 
   try {
     const parsedUrl = new globalThis.URL(url);
     const pathnameMatch = parsedUrl.pathname.match(/\/file\/d\/([^/]+)/);
 
-    if (pathnameMatch?.[1]) {
-      return pathnameMatch[1];
-    }
-
-    return parsedUrl.searchParams.get("id") || "";
+    const fileId = pathnameMatch?.[1] || parsedUrl.searchParams.get("id");
+    return fileId ? `https://drive.google.com/file/d/${fileId}/preview` : url;
   } catch {
-    return "";
+    return url;
   }
-}
-
-function getYouTubeVideoId(url) {
-  if (!url) return "";
-
-  try {
-    const parsedUrl = new globalThis.URL(url);
-
-    if (parsedUrl.hostname === "youtu.be") {
-      return parsedUrl.pathname.slice(1);
-    }
-
-    if (parsedUrl.hostname.includes("youtube.com") && parsedUrl.pathname.startsWith("/embed/")) {
-      return parsedUrl.pathname.split("/embed/")[1]?.split("/")[0] || "";
-    }
-
-    return parsedUrl.searchParams.get("v") || "";
-  } catch {
-    return "";
-  }
-}
-
-function getDemoVideoSource(url) {
-  const driveFileId = getGoogleDriveFileId(url);
-
-  if (driveFileId) {
-    const proxyBaseUrl = (import.meta.env.VITE_DRIVE_VIDEO_PROXY_URL || "").replace(/\/$/, "");
-    const encodedFileId = encodeURIComponent(driveFileId);
-
-    return {
-      provider: "google-drive",
-      originalUrl: `https://drive.google.com/file/d/${driveFileId}/view`,
-      primaryUrl: proxyBaseUrl
-        ? `${proxyBaseUrl}/video/${encodedFileId}`
-        : `https://drive.usercontent.google.com/download?id=${encodedFileId}&export=download&confirm=t`,
-      secondaryUrl: `https://drive.google.com/uc?export=download&id=${encodedFileId}&confirm=t`,
-    };
-  }
-
-  const youtubeVideoId = getYouTubeVideoId(url);
-
-  if (youtubeVideoId) {
-    return {
-      provider: "youtube",
-      originalUrl: url,
-      embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeVideoId}?rel=0&playsinline=1`,
-    };
-  }
-
-  return { provider: "unknown", originalUrl: url };
-}
-
-function formatVideoTime(value) {
-  if (!Number.isFinite(value)) return "0:00";
-
-  const minutes = Math.floor(value / 60);
-  const seconds = Math.floor(value % 60).toString().padStart(2, "0");
-  return `${minutes}:${seconds}`;
 }
 
 function App() {
@@ -1261,124 +1196,15 @@ function DemoCard({ demo, onPlay, delay }) {
 }
 
 function VideoModal({ demo, onClose }) {
-  const videoSource = getDemoVideoSource(demo.video);
-  const videoRef = useRef(null);
-  const [streamUrl, setStreamUrl] = useState(videoSource.primaryUrl || "");
-  const [streamUnavailable, setStreamUnavailable] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-
-  const togglePlayback = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  };
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
-  };
-
-  const seekVideo = (event) => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const nextTime = Number(event.target.value);
-    video.currentTime = nextTime;
-    setCurrentTime(nextTime);
-  };
-
-  const openFullscreen = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.requestFullscreen) {
-      video.requestFullscreen();
-    } else if (video.webkitEnterFullscreen) {
-      video.webkitEnterFullscreen();
-    }
-  };
-
-  const handleStreamError = () => {
-    if (streamUrl === videoSource.primaryUrl && videoSource.secondaryUrl) {
-      setStreamUrl(videoSource.secondaryUrl);
-      return;
-    }
-
-    setStreamUnavailable(true);
-  };
-
   return (
-    <div className="fixed inset-0 z-[80] grid place-items-center bg-navy-950/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
-      <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} className="demo-video-modal w-full max-w-5xl rounded-2xl bg-white shadow-2xl dark:bg-navy-900">
-        <div className="flex items-center justify-between border-b border-slate-200 p-4 dark:border-white/10">
+    <div className="demo-modal-backdrop fixed inset-0 z-[80] grid place-items-center bg-navy-950/80 p-4 backdrop-blur" role="dialog" aria-modal="true">
+      <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} className="demo-modal-dialog w-full max-w-5xl rounded-2xl bg-white shadow-2xl dark:bg-navy-900">
+        <div className="demo-modal-header flex items-center justify-between border-b border-slate-200 p-4 dark:border-white/10">
           <div><h3 className="font-heading text-xl font-bold">{demo.title}</h3><p className="text-sm text-slate-500 dark:text-slate-300">Embedded demo video</p></div>
           <button className="icon-button" onClick={onClose} aria-label="Close video"><X size={20} /></button>
         </div>
-        <div className="responsive-video-player">
-          <div className="responsive-video-frame">
-            {videoSource.provider === "google-drive" && streamUnavailable ? (
-              <div className="demo-video-unavailable">
-                <p>Video playback is unavailable in this browser.</p>
-                <a href={videoSource.originalUrl} target="_blank" rel="noreferrer">Open demo video</a>
-              </div>
-            ) : videoSource.provider === "google-drive" ? (
-              <video
-                key={streamUrl}
-                ref={videoRef}
-                src={streamUrl}
-                playsInline
-                preload="metadata"
-                onClick={togglePlayback}
-                onError={handleStreamError}
-                onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
-                onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-              />
-            ) : videoSource.provider === "youtube" ? (
-              <iframe src={videoSource.embedUrl} title={demo.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
-            ) : (
-              <div className="demo-video-unavailable">
-                <p>Video playback is unavailable.</p>
-                <a href={videoSource.originalUrl} target="_blank" rel="noreferrer">Open demo video</a>
-              </div>
-            )}
-          </div>
-          {videoSource.provider === "google-drive" && !streamUnavailable && (
-            <div className="demo-video-controls">
-              <button type="button" className="demo-video-control" onClick={togglePlayback} aria-label={isPlaying ? "Pause video" : "Play video"}>
-                {isPlaying ? <Pause size={19} /> : <Play size={19} />}
-              </button>
-              <input
-                className="demo-video-progress"
-                type="range"
-                min="0"
-                max={duration || 0.1}
-                step="0.1"
-                value={Math.min(currentTime, duration || 0.1)}
-                onChange={seekVideo}
-                aria-label="Video progress"
-              />
-              <span className="demo-video-time">{formatVideoTime(currentTime)} / {formatVideoTime(duration)}</span>
-              <button type="button" className="demo-video-control" onClick={toggleMute} aria-label={isMuted ? "Unmute video" : "Mute video"}>
-                {isMuted ? <VolumeX size={19} /> : <Volume2 size={19} />}
-              </button>
-              <button type="button" className="demo-video-control" onClick={openFullscreen} aria-label="Open video fullscreen">
-                <Maximize2 size={19} />
-              </button>
-            </div>
-          )}
+        <div className="demo-drive-player">
+          <iframe src={getDrivePreviewUrl(demo.video)} title={demo.title} allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowFullScreen />
         </div>
       </motion.div>
     </div>
