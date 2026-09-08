@@ -465,8 +465,15 @@ footer .menhi-brand img { width:60px; height:76px; }
 .dark .menhi-wordmark { color:#ffe3a0; border-color:#e5bd64; }
 .dark .menhi-header .menhi-wordmark { color:#ffe3a0; }
 footer .menhi-wordmark { color:#ffe3a0; }
+/* On mobile, keep every slide in a separate, uncropped image area. */
 @media(max-width:767px) {
-  .menhi-hero-inner { justify-content:flex-start; padding-bottom:calc(66.667vw + 28px); }
-  .menhi-hero .homepage-globe-slide,.menhi-hero .homepage-globe-slide:first-child { object-fit:contain; object-position:center bottom; background:#05254a; }
-  .menhi-hero .homepage-image-overlay { background:linear-gradient(180deg,rgba(2,20,44,.83),rgba(2,20,44,.63) 36%,rgba(2,20,44,0) 65%); }
+  .menhi-hero { display:flex; flex-direction:column; min-height:0; }
+  .menhi-hero-inner { order:0; width:100%; min-height:0; padding:36px 22px 24px; justify-content:flex-start; }
+  .menhi-hero .homepage-image-slider { order:1; position:relative; inset:auto; flex:none; width:100%; height:auto; aspect-ratio:3/2; background:#05254a; }
+  .menhi-hero .homepage-image-slide,
+  .menhi-hero .homepage-image-slide:first-child,
+  .menhi-hero .homepage-globe-slide,
+  .menhi-hero .homepage-globe-slide:first-child { object-fit:contain; object-position:center; background:#05254a; }
+  .menhi-hero .homepage-image-slide > img { object-fit:contain; object-position:center; }
+  .menhi-hero .homepage-image-overlay { display:none; }
 }
