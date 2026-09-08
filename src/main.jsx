@@ -370,8 +370,28 @@ function BrandServices() {
 }
 
 function Brand() {
+  const reduce = useReducedMotion();
+  const [failed, setFailed] = useState(false);
+  const poster = import.meta.env.BASE_URL + "images/menhi-logo-poster.webp";
   return <span className="menhi-brand">
-    <img src={import.meta.env.BASE_URL + "images/menhi-logo.png"} alt="Menhi peacock feather logo" width="74" height="82" />
+    {reduce || failed ? (
+      <img className="menhi-logo" src={poster} alt="Menhi peacock feather logo" width="1080" height="1080" />
+    ) : (
+      <video
+        className="menhi-logo"
+        src={import.meta.env.BASE_URL + "images/menhi-logo-animated.mp4"}
+        poster={poster}
+        width="1080"
+        height="1080"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-label="Menhi animated peacock feather logo"
+        onError={() => setFailed(true)}
+      />
+    )}
     <span className="menhi-wordmark">MENHI GLOBAL TECHNOLOGY PRIVATE LIMITED<span>Technology for a brighter tomorrow</span></span>
   </span>;
 }

@@ -338,7 +338,7 @@ body {
 
 /* Menhi identity: navy, gold and the supplied peacock mark. */
 .menhi-brand { display:flex; align-items:center; gap:14px; }
-.menhi-brand img { width:68px; height:78px; object-fit:contain; flex-shrink:0; }
+.menhi-brand .menhi-logo { width:68px; height:78px; object-fit:contain; flex-shrink:0; }
 .menhi-wordmark { display:block; max-width:330px; color:#092550; font:bold 17px/1.35 Georgia,serif; border-bottom:2px solid #d1ad55; padding-bottom:7px; }
 .menhi-wordmark > span { display:block; font:9px/1.5 Inter,sans-serif; text-transform:uppercase; letter-spacing:2px; margin-top:7px; }
 .menhi-header { background:#fff; }
@@ -361,7 +361,7 @@ body {
 .menhi-hero .homepage-image-overlay { background:linear-gradient(90deg,#041d3b 0%,rgba(4,29,59,.96) 32%,rgba(4,29,59,.70) 56%,rgba(4,29,59,.13) 100%); }
 footer .menhi-wordmark { color:white; font-size:15px; }
 footer .menhi-brand { align-items:flex-start; }
-footer .menhi-brand img { width:60px; height:76px; }
+footer .menhi-brand .menhi-logo { width:60px; height:76px; }
 .dark .menhi-header { background:#061a35; }
 .dark .menhi-header .menhi-wordmark,.dark .menhi-header nav > div:last-child > a { color:#fff; }
 @media (min-width:1024px) and (max-width:1350px) {
@@ -369,11 +369,11 @@ footer .menhi-brand img { width:60px; height:76px; }
   .menhi-header .menhi-wordmark { max-width:230px; font-size:13px; }
   .menhi-header nav > div > a,.menhi-header nav > div > div > a { padding-inline:7px; font-size:12px; }
   .menhi-header .menhi-brand { gap:8px; }
-  .menhi-header .menhi-brand img { width:48px; height:62px; }
+  .menhi-header .menhi-brand .menhi-logo { width:48px; height:62px; }
 }
 @media (max-width:640px) {
   .menhi-brand { gap:8px; }
-  .menhi-brand img { width:43px; height:58px; }
+  .menhi-brand .menhi-logo { width:43px; height:58px; }
   .menhi-wordmark { max-width:205px; font-size:12px; }
   .menhi-wordmark > span { font-size:7px; letter-spacing:1px; }
   .menhi-header nav { gap:8px; padding:8px 12px; }
@@ -460,8 +460,8 @@ footer .menhi-brand img { width:60px; height:76px; }
 
 /* Art-directed mobile globe: every badge fits inside the screen. */
 .homepage-image-slide > img { display:block; width:100%; height:100%; object-fit:inherit; object-position:inherit; }
-.menhi-brand img { border-radius:12px; background:radial-gradient(ellipse,rgba(255,224,148,.3),transparent 72%); filter:drop-shadow(0 0 2px rgba(190,137,28,.38)); transition:filter .25s,background .25s; }
-.dark .menhi-brand img,footer .menhi-brand img { background:radial-gradient(ellipse,rgba(255,236,182,.42) 0%,rgba(245,199,90,.16) 42%,transparent 74%); filter:brightness(1.2) saturate(1.1) drop-shadow(0 0 2px #ffe4a3) drop-shadow(0 0 7px rgba(255,203,92,.55)); }
+.menhi-brand .menhi-logo { border-radius:12px; background:radial-gradient(ellipse,rgba(255,224,148,.3),transparent 72%); filter:drop-shadow(0 0 2px rgba(190,137,28,.38)); transition:filter .25s,background .25s; }
+.dark .menhi-brand .menhi-logo,footer .menhi-brand .menhi-logo { background:radial-gradient(ellipse,rgba(255,236,182,.42) 0%,rgba(245,199,90,.16) 42%,transparent 74%); filter:brightness(1.2) saturate(1.1) drop-shadow(0 0 2px #ffe4a3) drop-shadow(0 0 7px rgba(255,203,92,.55)); }
 .dark .menhi-wordmark { color:#ffe3a0; border-color:#e5bd64; }
 .dark .menhi-header .menhi-wordmark { color:#ffe3a0; }
 footer .menhi-wordmark { color:#ffe3a0; }
