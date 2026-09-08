@@ -477,3 +477,13 @@ footer .menhi-wordmark { color:#ffe3a0; }
   .menhi-hero .homepage-image-slide > img { object-fit:contain; object-position:center; }
   .menhi-hero .homepage-image-overlay { display:none; }
 }
+
+/* The current image softly colors the mobile copy area as slides crossfade. */
+.menhi-ambient { display:none; }
+@media(max-width:767px) {
+  .menhi-ambient { display:block; position:absolute; inset:0; overflow:hidden; pointer-events:none; mask-image:linear-gradient(to top,#000,rgba(0,0,0,.55) 45%,transparent 100%); -webkit-mask-image:linear-gradient(to top,#000,rgba(0,0,0,.55) 45%,transparent 100%); }
+  .menhi-ambient-slide { position:absolute; inset:-35px; background-size:cover; background-position:center top; filter:blur(30px) saturate(.85); opacity:0; transition:opacity 1.4s cubic-bezier(.4,0,.2,1); }
+  .menhi-ambient-active { opacity:.3; }
+  .menhi-hero-copy { position:relative; z-index:1; }
+  .menhi-hero .homepage-image-slider { mask-image:linear-gradient(to bottom,transparent,#000 7%); -webkit-mask-image:linear-gradient(to bottom,transparent,#000 7%); }
+}

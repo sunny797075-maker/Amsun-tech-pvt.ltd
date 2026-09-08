@@ -377,10 +377,18 @@ function Brand() {
 }
 
 function Hero() {
+  const [ambientImage, setAmbientImage] = useState(homepageImages[0]);
   return (
     <section className="menhi-hero relative isolate overflow-hidden">
-      <HomepageImageSlider />
+      <HomepageImageSlider onActiveImageChange={setAmbientImage} />
       <div className="menhi-hero-inner">
+        <div className="menhi-ambient" aria-hidden="true">
+          {homepageImages.map((source, index) => <div
+            key={source}
+            className={cn("menhi-ambient-slide", source === ambientImage && "menhi-ambient-active")}
+            style={{ backgroundImage: `url("${index === 0 ? import.meta.env.BASE_URL + "images/menhi-global-network.png" : source}")` }}
+          />)}
+        </div>
         <div className="menhi-hero-copy">
           <p className="menhi-eyebrow">People | Technology | A brighter tomorrow</p>
           <h1>Technology That Moves <span>Businesses Forward</span></h1>
@@ -408,10 +416,14 @@ const homepageImages = [
   "homepage9.jpg.png",
 ].map((fileName) => `${import.meta.env.BASE_URL}images/${encodeURIComponent(fileName)}`);
 
-function HomepageImageSlider() {
+function HomepageImageSlider({ onActiveImageChange }) {
   const reduceMotion = useReducedMotion();
   const [loadedImages, setLoadedImages] = useState([]);
   const [activeImage, setActiveImage] = useState(homepageImages[0]);
+
+  useEffect(() => {
+    onActiveImageChange(activeImage);
+  }, [activeImage, onActiveImageChange]);
 
   useEffect(() => {
     let isCurrent = true;
