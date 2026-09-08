@@ -133,13 +133,13 @@ export const caseStudies = [
 ];
 
 export const testimonials = [
-  ["Operations Director, UK Retail Group", "Amsun brought structure, speed and security discipline to our ERP transformation."],
+  ["Operations Director, UK Retail Group", "Menhi brought structure, speed and security discipline to our ERP transformation."],
   ["Founder, US SaaS Company", "Their AI automation pilots moved from idea to production without disrupting our teams."],
   ["CFO, Manufacturing Enterprise", "The dashboards finally gave us one trusted view of inventory and cash flow."],
 ];
 
 export const faqs = [
-  ["Do you work with US and UK clients?", "Yes. Amsun supports global delivery with remote-first governance, timezone overlap and clear weekly reporting."],
+  ["Do you work with US and UK clients?", "Yes. Menhi supports global delivery with remote-first governance, timezone overlap and clear weekly reporting."],
   ["Can you customize Odoo for our process?", "Yes. We configure standard modules first, then extend only where custom workflows create measurable value."],
   ["Do you provide cybersecurity audits?", "Yes. We offer security posture reviews, VAPT coordination, cloud hardening and managed monitoring packages."],
   ["Can we start with a small AI pilot?", "Yes. We typically begin with a focused use case, measurable success criteria and production controls."],

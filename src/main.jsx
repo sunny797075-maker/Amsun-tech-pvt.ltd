@@ -10,6 +10,8 @@ import {
   ChevronDown,
   CloudCog,
   Cpu,
+  Database,
+  Users,
   LineChart,
   LockKeyhole,
   Mail,
@@ -52,7 +54,7 @@ function getDrivePreviewUrl(url) {
 }
 
 function App() {
-  const [dark, setDark] = useState(() => localStorage.getItem("theme") !== "light");
+  const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
   const routerBasename = import.meta.env.BASE_URL === "/" ? "/" : import.meta.env.BASE_URL.replace(/\/$/, "");
 
   useEffect(() => {
@@ -109,19 +111,19 @@ function PageShell({ children }) {
 function SeoUpdater() {
   const { pathname } = useLocation();
   const titles = {
-    "/": "Amsun Technology Private Limited | Secure AI ERP, Cloud & Cybersecurity",
+    "/": "Menhi Global Technology Private Limited | Secure AI ERP, Cloud & Cybersecurity",
     "/services": "IT Services | Odoo ERP, AI, Cybersecurity, Cloud & CRM",
-    "/demo-center": "ERP & CRM Demo Center | Amsun Technology",
-    "/industries": "Industries Served | Amsun Technology",
-    "/about": "About Amsun Technology Private Limited",
-    "/careers": "Careers | Amsun Technology",
-    "/contact": "Contact Amsun Technology",
+    "/demo-center": "ERP & CRM Demo Center | Menhi Global Technology",
+    "/industries": "Industries Served | Menhi Global Technology",
+    "/about": "About Menhi Global Technology Private Limited",
+    "/careers": "Careers | Menhi Global Technology",
+    "/contact": "Contact Menhi Global Technology",
   };
   useEffect(() => {
     document.title = titles[pathname] || titles["/"];
     document.querySelector("meta[name='description']")?.setAttribute(
       "content",
-      "Amsun Technology Private Limited delivers secure AI-powered ERP, Odoo, CRM, cloud, DevOps and cybersecurity solutions for US and UK businesses."
+      "Menhi Global Technology Private Limited delivers secure AI-powered ERP, Odoo, CRM, cloud, DevOps and cybersecurity solutions for US and UK businesses."
     );
   }, [pathname]);
   return null;
@@ -152,14 +154,10 @@ function Navbar({ dark, setDark }) {
   }, [location.pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-white/80 shadow-sm backdrop-blur-xl dark:bg-navy-950/80">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <Link to="/" className="flex items-center gap-3" aria-label="Amsun Technology home">
-          <span className="grid h-11 w-11 place-items-center rounded-lg bg-navy-900 text-lg font-black text-cyanbrand-400 shadow-glow">A</span>
-          <span>
-            <span className="block font-heading text-base font-bold tracking-tight">Amsun Technology</span>
-            <span className="block text-xs font-semibold text-cyan-600 dark:text-cyanbrand-300">Private Limited</span>
-          </span>
+    <header className="menhi-header sticky top-0 z-50 border-b border-white/10 bg-white/80 shadow-sm backdrop-blur-xl dark:bg-navy-950/80">
+      <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main navigation">
+        <Link to="/" className="flex items-center gap-3" aria-label="Menhi Global Technology home">
+          <Brand />
         </Link>
         <div className="hidden items-center gap-1 lg:flex">
           {navItems.map(([label, href]) => (
@@ -241,7 +239,7 @@ function Navbar({ dark, setDark }) {
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <Link to="/contact" className="hidden rounded-md bg-cyanbrand-500 px-4 py-2 text-sm font-bold text-navy-950 shadow-glow transition hover:-translate-y-0.5 sm:inline-flex">
-            Book Consultation
+            Get Consultation
           </Link>
           <button className="icon-button lg:hidden" onClick={() => setOpen(!open)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
             {open ? <X size={20} /> : <Menu size={20} />}
@@ -339,6 +337,7 @@ function Home() {
   return (
     <>
       <Hero />
+      <BrandServices />
       <TrustProof />
       <ServicesOverview />
       <EnterpriseExperience />
@@ -354,38 +353,50 @@ function Home() {
   );
 }
 
+function BrandServices() {
+  const items = [
+    ["Software Development", "Custom software solutions that solve real business challenges.", Network, "/services/website-and-application-development"],
+    ["Cloud Solutions", "Modern, secure and scalable cloud infrastructure for your growth.", CloudCog, "/services/cloud-and-devops"],
+    ["Cybersecurity", "Proactive security solutions to keep your business resilient and trusted.", ShieldCheck, "/services/cybersecurity-services"],
+    ["AI & Automation", "Intelligent automation to increase efficiency and unlock new possibilities.", Cpu, "/services/ai-automation"],
+    ["ERP Solutions", "Connect finance, inventory, HR and operations with a tailored Odoo ERP system.", Database, "/services/odoo-erp-solutions"],
+    ["CRM Solutions", "Manage leads, strengthen customer relationships and grow sales in one place.", Users, "/services/crm-solutions"],
+  ];
+  return <section className="menhi-services" aria-label="Explore our core services">
+    {items.map(([title, description, Icon, href]) => <Link key={title} to={href} className="menhi-service">
+      {React.createElement(Icon, { size: 34, "aria-hidden": true })}<div><h2>{title}</h2><p>{description}</p></div><ArrowRight className="menhi-service-arrow" size={20} aria-hidden="true" />
+    </Link>)}
+  </section>;
+}
+
+function Brand() {
+  return <span className="menhi-brand">
+    <img src={import.meta.env.BASE_URL + "images/menhi-logo.png"} alt="Menhi peacock feather logo" width="74" height="82" />
+    <span className="menhi-wordmark">MENHI GLOBAL TECHNOLOGY PRIVATE LIMITED<span>Technology for a brighter tomorrow</span></span>
+  </span>;
+}
+
 function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-slate-50 text-navy-950">
+    <section className="menhi-hero relative isolate overflow-hidden">
       <HomepageImageSlider />
-      <div className="mx-auto flex min-h-[calc(100vh-72px)] max-w-7xl items-center px-4 py-20 sm:px-6 lg:px-8">
-        <Reveal className="hero-copy-surface relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/60 bg-white/70 px-3 py-2 text-sm font-semibold text-cyan-700 shadow-enterprise backdrop-blur">
-            <Sparkles size={16} /> Secure AI-Powered ERP, Cloud & Cybersecurity Solutions
+      <div className="menhi-hero-inner">
+        <div className="menhi-hero-copy">
+          <p className="menhi-eyebrow">People | Technology | A brighter tomorrow</p>
+          <h1>Technology That Moves <span>Businesses Forward</span></h1>
+          <p className="menhi-intro">Secure, scalable and intelligent digital solutions for modern enterprises.</p>
+          <div className="menhi-actions">
+            <Link to="/services" className="menhi-primary">Explore Our Services <ArrowRight size={20} /></Link>
+            <Link to="/contact" className="menhi-secondary">Talk to an Expert</Link>
           </div>
-          <h1 className="mt-7 max-w-5xl font-heading text-4xl font-extrabold leading-tight text-navy-950 [text-shadow:0_2px_14px_rgba(255,255,255,.9)] sm:text-5xl lg:text-6xl">
-            Transform Your Business with Secure AI-Powered ERP & Cloud Solutions
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl">
-            We help businesses automate operations, secure infrastructure, and scale globally using AI, ERP, Cybersecurity and Cloud technologies.
-          </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link to="/contact" className="primary-button">Book Free Consultation <ArrowRight size={18} /></Link>
-            <Link to="/demo-center" className="hero-light-button">Schedule ERP Demo <Play size={18} /></Link>
-            <Link to="/contact" className="hero-light-button">Get Security Audit <ShieldCheck size={18} /></Link>
-          </div>
-          <div className="mt-10 grid max-w-xl grid-cols-3 gap-3 text-center">
-            {["US/UK Ready", "AI-Led Delivery", "Security First"].map((item) => (
-              <div key={item} className="rounded-lg border border-cyan-200 bg-white/70 p-3 text-sm font-bold text-navy-900 shadow-enterprise backdrop-blur">{item}</div>
-            ))}
-          </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
 }
 
 const homepageImages = [
+  "menhi-global-wide.png",
   "home page 1.png.png",
   "homepage2.jpg.png",
   "homepage3.jpg.jpeg",
@@ -400,7 +411,7 @@ const homepageImages = [
 function HomepageImageSlider() {
   const reduceMotion = useReducedMotion();
   const [loadedImages, setLoadedImages] = useState([]);
-  const [activeImage, setActiveImage] = useState("");
+  const [activeImage, setActiveImage] = useState(homepageImages[0]);
 
   useEffect(() => {
     let isCurrent = true;
@@ -416,25 +427,29 @@ function HomepageImageSlider() {
           if (currentImages.includes(source)) return currentImages;
           return [...currentImages, source].sort((first, second) => homepageImages.indexOf(first) - homepageImages.indexOf(second));
         });
+        if (source === homepageImages[0] && !reduceMotion) homepageImages.slice(1).forEach(loadImage);
+      };
+      image.onerror = () => {
+        if (!isCurrent) return;
+        if (source === homepageImages[0]) {
+          setActiveImage("");
+          homepageImages.slice(1).forEach(loadImage);
+        }
       };
       image.src = source;
       imageLoaders.push(image);
     };
 
     loadImage(homepageImages[0]);
-    const remainingImageTimer = window.setTimeout(() => {
-      homepageImages.slice(1).forEach(loadImage);
-    }, 250);
 
     return () => {
       isCurrent = false;
-      window.clearTimeout(remainingImageTimer);
       imageLoaders.forEach((image) => {
         image.onload = null;
         image.onerror = null;
       });
     };
-  }, []);
+  }, [reduceMotion]);
 
   useEffect(() => {
     if (!activeImage && loadedImages.length) {
@@ -452,10 +467,10 @@ function HomepageImageSlider() {
         const currentIndex = loadedImages.indexOf(currentImage);
         return loadedImages[(currentIndex + 1) % loadedImages.length];
       });
-    }, 4500);
+    }, 6000);
 
     return () => window.clearInterval(imageTimer);
-  }, [loadedImages.length, reduceMotion]);
+  }, [loadedImages, reduceMotion]);
 
   return (
     <div className="homepage-image-slider" aria-hidden="true">
@@ -489,7 +504,7 @@ function DashboardMockup() {
       <div className="glass-panel overflow-hidden rounded-2xl border border-white/[0.16]">
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <div>
-            <p className="text-sm font-bold text-cyanbrand-300">Amsun Command Center</p>
+            <p className="text-sm font-bold text-cyanbrand-300">Menhi Command Center</p>
             <p className="text-xs text-slate-300">ERP + AI + Security telemetry</p>
           </div>
           <div className="flex gap-2"><span className="dot bg-rose-400" /><span className="dot bg-amber-300" /><span className="dot bg-emerald-400" /></div>
@@ -539,7 +554,7 @@ function TrustProof() {
   ];
 
   return (
-    <Section className="bg-white dark:bg-navy-900/50" eyebrow="Built For Trust" title="A technology partner visitors can evaluate in minutes" text="Amsun presents the signals enterprise buyers expect: process clarity, security awareness, measurable outcomes and responsive delivery. The website is designed to help decision-makers quickly understand what we do, how we work and why we are credible.">
+    <Section className="bg-white dark:bg-navy-900/50" eyebrow="Built For Trust" title="A technology partner visitors can evaluate in minutes" text="Menhi presents the signals enterprise buyers expect: process clarity, security awareness, measurable outcomes and responsive delivery. The website is designed to help decision-makers quickly understand what we do, how we work and why we are credible.">
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {proof.map(([title, text], i) => (
           <Reveal key={title} delay={i * 0.04} className="card p-6">
@@ -786,7 +801,7 @@ function Services() {
 
 function ServiceTrustIntro() {
   return (
-    <Section className="bg-white dark:bg-navy-900/50" eyebrow="How We Help" title="Services shaped for real business operations" text="Amsun Technology Private Limited helps organizations replace disconnected tools, manual approvals and security blind spots with integrated systems. Whether a client needs Odoo ERP, CRM, AI automation, cloud infrastructure or cybersecurity support, we focus on practical implementation, clean ownership and measurable improvement.">
+    <Section className="bg-white dark:bg-navy-900/50" eyebrow="How We Help" title="Services shaped for real business operations" text="Menhi Global Technology Private Limited helps organizations replace disconnected tools, manual approvals and security blind spots with integrated systems. Whether a client needs Odoo ERP, CRM, AI automation, cloud infrastructure or cybersecurity support, we focus on practical implementation, clean ownership and measurable improvement.">
       <div className="grid gap-5 lg:grid-cols-3">
         {[
           ["Business process depth", "We document how teams sell, procure, fulfill, support and report before designing systems."],
@@ -998,7 +1013,7 @@ function SingleServiceTrust({ service }) {
           <p className="eyebrow text-cyanbrand-300">Trust Line</p>
           <h3 className="mt-4 font-heading text-3xl font-bold leading-tight">"{details.line}"</h3>
           <p className="mt-5 leading-8 text-slate-200">
-            Amsun Technology Private Limited works like a long-term technology partner: clear discovery, practical implementation, security awareness, documentation and support after go-live.
+            Menhi Global Technology Private Limited works like a long-term technology partner: clear discovery, practical implementation, security awareness, documentation and support after go-live.
           </p>
         </Reveal>
         <Reveal className="grid gap-4 sm:grid-cols-2">
@@ -1248,7 +1263,7 @@ function Industries() {
 function About() {
   return (
     <>
-      <PageHero eyebrow="About Us" title="Amsun Technology Private Limited helps modern businesses operate securely at scale" text="Our mission is to make enterprise systems more intelligent, connected and resilient for global clients." />
+      <PageHero eyebrow="About Us" title="Menhi Global Technology Private Limited helps modern businesses operate securely at scale" text="Our mission is to make enterprise systems more intelligent, connected and resilient for global clients." />
       <Section>
         <div className="grid gap-6 lg:grid-cols-2">
           <Reveal className="card p-8"><h2 className="heading-md">Mission</h2><p className="mt-4 leading-8 text-slate-600 dark:text-slate-300">Deliver secure, practical and measurable digital transformation through ERP, AI, cloud and cybersecurity services.</p></Reveal>
@@ -1257,7 +1272,7 @@ function About() {
       </Section>
       <Section className="bg-white dark:bg-navy-900/50" eyebrow="Founder Message" title="Technology should simplify growth, not create new complexity">
         <Reveal className="mx-auto max-w-4xl text-center text-xl leading-9 text-slate-700 dark:text-slate-200">
-          "We built Amsun around a simple belief: enterprise technology must be secure, usable and tied to business outcomes. Our teams combine consulting clarity with hands-on engineering so clients can move with confidence."
+          "We built Menhi around a simple belief: enterprise technology must be secure, usable and tied to business outcomes. Our teams combine consulting clarity with hands-on engineering so clients can move with confidence."
         </Reveal>
       </Section>
       <Section eyebrow="Global Delivery Model" title="Structured delivery for distributed teams">
@@ -1406,7 +1421,7 @@ function ContactCTA() {
 
 function FloatingContact() {
   return (
-    <Link to="/contact" className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-cyanbrand-500 text-navy-950 shadow-glow transition hover:-translate-y-1" aria-label="Contact Amsun Technology">
+    <Link to="/contact" className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-cyanbrand-500 text-navy-950 shadow-glow transition hover:-translate-y-1" aria-label="Contact Menhi Global Technology">
       <MessageCircle size={24} />
     </Link>
   );
@@ -1418,7 +1433,7 @@ function Footer() {
     <footer className="bg-navy-950 text-white">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <h2 className="font-heading text-2xl font-bold">Amsun Technology</h2>
+          <Link to="/" aria-label="Menhi Global Technology home"><Brand /></Link>
           <p className="mt-3 leading-7 text-slate-300">Secure AI-Powered ERP, Cloud & Cybersecurity Solutions for global businesses.</p>
         </div>
         <FooterList title="Quick Links" items={navItems.map(([label, href]) => ({ label, href }))} />
@@ -1440,7 +1455,7 @@ function Footer() {
           <div className="mt-5 flex gap-3 text-sm text-slate-300"><a href="https://linkedin.com" className="hover:text-cyanbrand-300">LinkedIn</a><a href="https://x.com" className="hover:text-cyanbrand-300">X</a></div>
         </div>
       </div>
-      <div className="border-t border-white/10 px-4 py-5 text-center text-sm text-slate-400">© 2026 Amsun Technology Private Limited. All rights reserved.</div>
+      <div className="border-t border-white/10 px-4 py-5 text-center text-sm text-slate-400">© 2026 Menhi Global Technology Private Limited. All rights reserved.</div>
     </footer>
   );
 }

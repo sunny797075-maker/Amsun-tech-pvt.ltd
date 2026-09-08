@@ -7,9 +7,9 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#g)"/>
-  <circle cx="1020" cy="120" r="210" fill="#09d3f2" opacity=".18"/>
+  <circle cx="1020" cy="120" r="210" fill="#e8bd60" opacity=".18"/>
   <circle cx="190" cy="520" r="190" fill="#2563eb" opacity=".22"/>
-  <text x="80" y="220" fill="#fff" font-size="62" font-family="Inter, Arial" font-weight="800">Amsun Technology</text>
-  <text x="80" y="302" fill="#8cf3ff" font-size="44" font-family="Inter, Arial" font-weight="700">Secure AI-Powered ERP, Cloud &amp; Cybersecurity</text>
+  <text x="80" y="220" fill="#fff" font-size="58" font-family="Inter, Arial" font-weight="800">Menhi Global Technology</text>
+  <text x="80" y="302" fill="#f1c965" font-size="36" font-family="Inter, Arial" font-weight="700">Secure AI-Powered ERP, Cloud &amp; Cybersecurity</text>
   <text x="80" y="390" fill="#d9e7f7" font-size="30" font-family="Inter, Arial">Odoo ERP | AI Automation | Cybersecurity | Cloud &amp; DevOps | CRM</text>
 </svg>

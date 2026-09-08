@@ -1,4 +1,4 @@
-# Amsun Technology Private Limited Website
+# Menhi Global Technology Private Limited Website
 
 Modern multi-page IT services website built with React, Vite, Tailwind CSS and Framer Motion.
 
