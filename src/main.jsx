@@ -475,14 +475,13 @@ function HomepageImageSlider() {
   return (
     <div className="homepage-image-slider" aria-hidden="true">
       {loadedImages.map((source, index) => (
-        <img
+        <picture
           key={source}
-          className={cn("homepage-image-slide", source === activeImage && "homepage-image-slide-active")}
-          src={source}
-          alt=""
-          decoding="async"
-          fetchPriority={index === 0 ? "high" : "auto"}
-        />
+          className={cn("homepage-image-slide", source === homepageImages[0] && "homepage-globe-slide", source === activeImage && "homepage-image-slide-active")}
+        >
+          {source === homepageImages[0] && <source media="(max-width: 767px)" srcSet={import.meta.env.BASE_URL + "images/menhi-global-network.png"} />}
+          <img src={source} alt="" decoding="async" fetchPriority={index === 0 ? "high" : "auto"} />
+        </picture>
       ))}
       <div className="homepage-image-overlay" />
     </div>
