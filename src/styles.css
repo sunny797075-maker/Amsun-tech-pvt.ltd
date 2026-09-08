@@ -14,11 +14,12 @@
 body {
   margin: 0;
   min-width: 320px;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
+/* Clip horizontal artwork without creating a scroll container above the sticky header. */
 #root {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @layer components {
