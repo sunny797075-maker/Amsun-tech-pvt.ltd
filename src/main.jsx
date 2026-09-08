@@ -370,28 +370,18 @@ function BrandServices() {
 }
 
 function Brand() {
-  const reduce = useReducedMotion();
-  const [failed, setFailed] = useState(false);
-  const poster = import.meta.env.BASE_URL + "images/menhi-logo-poster.webp";
+  const logoBase = import.meta.env.BASE_URL + "images/menhi-logo-clear-";
   return <span className="menhi-brand">
-    {reduce || failed ? (
-      <img className="menhi-logo" src={poster} alt="Menhi peacock feather logo" width="1080" height="1080" />
-    ) : (
-      <video
-        className="menhi-logo"
-        src={import.meta.env.BASE_URL + "images/menhi-logo-animated.mp4"}
-        poster={poster}
-        width="1080"
-        height="1080"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        aria-label="Menhi animated peacock feather logo"
-        onError={() => setFailed(true)}
-      />
-    )}
+    <img
+      className="menhi-logo"
+      src={logoBase + "192.webp"}
+      srcSet={`${logoBase}96.webp 96w, ${logoBase}192.webp 192w, ${logoBase}288.webp 288w`}
+      sizes="(max-width: 640px) 48px, (min-width: 1024px) and (max-width: 1350px) 48px, 68px"
+      alt="Menhi peacock feather logo"
+      width="900"
+      height="1240"
+      decoding="async"
+    />
     <span className="menhi-wordmark">MENHI GLOBAL TECHNOLOGY PRIVATE LIMITED<span>Technology for a brighter tomorrow</span></span>
   </span>;
 }
