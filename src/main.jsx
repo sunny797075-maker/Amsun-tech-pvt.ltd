@@ -370,19 +370,19 @@ function BrandServices() {
 }
 
 function Brand() {
-  const logoBase = import.meta.env.BASE_URL + "images/mehi-logo-clear-";
+  const logoBase = import.meta.env.BASE_URL + "images/menhi-logo-clear-";
   return <span className="mehi-brand">
     <img
       className="mehi-logo"
       src={logoBase + "192.webp"}
       srcSet={`${logoBase}96.webp 96w, ${logoBase}192.webp 192w, ${logoBase}288.webp 288w`}
       sizes="(max-width: 640px) 48px, (min-width: 1024px) and (max-width: 1350px) 48px, 68px"
-      alt="mehi peacock feather logo"
+      alt="MEHI peacock feather logo"
       width="900"
       height="1240"
       decoding="async"
     />
-    <span className="mehi-wordmark">mehi GLOBAL TECHNOLOGY PRIVATE LIMITED<span>Technology for a brighter tomorrow</span></span>
+    <span className="mehi-wordmark">MEHI GLOBAL TECHNOLOGY PRIVATE LIMITED<span>Technology for a brighter tomorrow</span></span>
   </span>;
 }
 
@@ -396,7 +396,7 @@ function Hero() {
           {homepageImages.map((source, index) => <div
             key={source}
             className={cn("mehi-ambient-slide", source === ambientImage && "mehi-ambient-active")}
-            style={{ backgroundImage: `url("${index === 0 ? import.meta.env.BASE_URL + "images/mehi-global-network.png" : source}")` }}
+            style={{ backgroundImage: `url("${index === 0 ? import.meta.env.BASE_URL + "images/menhi-global-network.png" : source}")` }}
           />)}
         </div>
         <div className="mehi-hero-copy">
@@ -414,7 +414,7 @@ function Hero() {
 }
 
 const homepageImages = [
-  "mehi-global-wide.png",
+  "menhi-global-wide.png",
   "home page 1.png.png",
   "homepage2.jpg.png",
   "homepage3.jpg.jpeg",
@@ -501,7 +501,7 @@ function HomepageImageSlider({ onActiveImageChange }) {
           key={source}
           className={cn("homepage-image-slide", source === homepageImages[0] && "homepage-globe-slide", source === activeImage && "homepage-image-slide-active")}
         >
-          {source === homepageImages[0] && <source media="(max-width: 767px)" srcSet={import.meta.env.BASE_URL + "images/mehi-global-network.png"} />}
+          {source === homepageImages[0] && <source media="(max-width: 767px)" srcSet={import.meta.env.BASE_URL + "images/menhi-global-network.png"} />}
           <img src={source} alt="" decoding="async" fetchPriority={index === 0 ? "high" : "auto"} />
         </picture>
       ))}
