@@ -111,19 +111,19 @@ function PageShell({ children }) {
 function SeoUpdater() {
   const { pathname } = useLocation();
   const titles = {
-    "/": "Menhi Global Technology Private Limited | Secure AI ERP, Cloud & Cybersecurity",
+    "/": "mehi Global Technology Private Limited | Secure AI ERP, Cloud & Cybersecurity",
     "/services": "IT Services | Odoo ERP, AI, Cybersecurity, Cloud & CRM",
-    "/demo-center": "ERP & CRM Demo Center | Menhi Global Technology",
-    "/industries": "Industries Served | Menhi Global Technology",
-    "/about": "About Menhi Global Technology Private Limited",
-    "/careers": "Careers | Menhi Global Technology",
-    "/contact": "Contact Menhi Global Technology",
+    "/demo-center": "ERP & CRM Demo Center | mehi Global Technology",
+    "/industries": "Industries Served | mehi Global Technology",
+    "/about": "About mehi Global Technology Private Limited",
+    "/careers": "Careers | mehi Global Technology",
+    "/contact": "Contact mehi Global Technology",
   };
   useEffect(() => {
     document.title = titles[pathname] || titles["/"];
     document.querySelector("meta[name='description']")?.setAttribute(
       "content",
-      "Menhi Global Technology Private Limited delivers secure AI-powered ERP, Odoo, CRM, cloud, DevOps and cybersecurity solutions for US and UK businesses."
+      "mehi Global Technology Private Limited delivers secure AI-powered ERP, Odoo, CRM, cloud, DevOps and cybersecurity solutions for US and UK businesses."
     );
   }, [pathname]);
   return null;
@@ -154,9 +154,9 @@ function Navbar({ dark, setDark }) {
   }, [location.pathname]);
 
   return (
-    <header className="menhi-header sticky top-0 z-50 border-b border-white/10 bg-white/80 shadow-sm backdrop-blur-xl dark:bg-navy-950/80">
+    <header className="mehi-header sticky top-0 z-50 border-b border-white/10 bg-white/80 shadow-sm backdrop-blur-xl dark:bg-navy-950/80">
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <Link to="/" className="flex items-center gap-3" aria-label="Menhi Global Technology home">
+        <Link to="/" className="flex items-center gap-3" aria-label="mehi Global Technology home">
           <Brand />
         </Link>
         <div className="hidden items-center gap-1 lg:flex">
@@ -362,50 +362,50 @@ function BrandServices() {
     ["ERP Solutions", "Connect finance, inventory, HR and operations with a tailored Odoo ERP system.", Database, "/services/odoo-erp-solutions"],
     ["CRM Solutions", "Manage leads, strengthen customer relationships and grow sales in one place.", Users, "/services/crm-solutions"],
   ];
-  return <section className="menhi-services" aria-label="Explore our core services">
-    {items.map(([title, description, Icon, href]) => <Link key={title} to={href} className="menhi-service">
-      {React.createElement(Icon, { size: 34, "aria-hidden": true })}<div><h2>{title}</h2><p>{description}</p></div><ArrowRight className="menhi-service-arrow" size={20} aria-hidden="true" />
+  return <section className="mehi-services" aria-label="Explore our core services">
+    {items.map(([title, description, Icon, href]) => <Link key={title} to={href} className="mehi-service">
+      {React.createElement(Icon, { size: 34, "aria-hidden": true })}<div><h2>{title}</h2><p>{description}</p></div><ArrowRight className="mehi-service-arrow" size={20} aria-hidden="true" />
     </Link>)}
   </section>;
 }
 
 function Brand() {
-  const logoBase = import.meta.env.BASE_URL + "images/menhi-logo-clear-";
-  return <span className="menhi-brand">
+  const logoBase = import.meta.env.BASE_URL + "images/mehi-logo-clear-";
+  return <span className="mehi-brand">
     <img
-      className="menhi-logo"
+      className="mehi-logo"
       src={logoBase + "192.webp"}
       srcSet={`${logoBase}96.webp 96w, ${logoBase}192.webp 192w, ${logoBase}288.webp 288w`}
       sizes="(max-width: 640px) 48px, (min-width: 1024px) and (max-width: 1350px) 48px, 68px"
-      alt="Menhi peacock feather logo"
+      alt="mehi peacock feather logo"
       width="900"
       height="1240"
       decoding="async"
     />
-    <span className="menhi-wordmark">MENHI GLOBAL TECHNOLOGY PRIVATE LIMITED<span>Technology for a brighter tomorrow</span></span>
+    <span className="mehi-wordmark">mehi GLOBAL TECHNOLOGY PRIVATE LIMITED<span>Technology for a brighter tomorrow</span></span>
   </span>;
 }
 
 function Hero() {
   const [ambientImage, setAmbientImage] = useState(homepageImages[0]);
   return (
-    <section className="menhi-hero relative isolate overflow-hidden">
+    <section className="mehi-hero relative isolate overflow-hidden">
       <HomepageImageSlider onActiveImageChange={setAmbientImage} />
-      <div className="menhi-hero-inner">
-        <div className="menhi-ambient" aria-hidden="true">
+      <div className="mehi-hero-inner">
+        <div className="mehi-ambient" aria-hidden="true">
           {homepageImages.map((source, index) => <div
             key={source}
-            className={cn("menhi-ambient-slide", source === ambientImage && "menhi-ambient-active")}
-            style={{ backgroundImage: `url("${index === 0 ? import.meta.env.BASE_URL + "images/menhi-global-network.png" : source}")` }}
+            className={cn("mehi-ambient-slide", source === ambientImage && "mehi-ambient-active")}
+            style={{ backgroundImage: `url("${index === 0 ? import.meta.env.BASE_URL + "images/mehi-global-network.png" : source}")` }}
           />)}
         </div>
-        <div className="menhi-hero-copy">
-          <p className="menhi-eyebrow">People | Technology | A brighter tomorrow</p>
+        <div className="mehi-hero-copy">
+          <p className="mehi-eyebrow">People | Technology | A brighter tomorrow</p>
           <h1>Technology That Moves <span>Businesses Forward</span></h1>
-          <p className="menhi-intro">Secure, scalable and intelligent digital solutions for modern enterprises.</p>
-          <div className="menhi-actions">
-            <Link to="/services" className="menhi-primary">Explore Our Services <ArrowRight size={20} /></Link>
-            <Link to="/contact" className="menhi-secondary">Talk to an Expert</Link>
+          <p className="mehi-intro">Secure, scalable and intelligent digital solutions for modern enterprises.</p>
+          <div className="mehi-actions">
+            <Link to="/services" className="mehi-primary">Explore Our Services <ArrowRight size={20} /></Link>
+            <Link to="/contact" className="mehi-secondary">Talk to an Expert</Link>
           </div>
         </div>
       </div>
@@ -414,7 +414,7 @@ function Hero() {
 }
 
 const homepageImages = [
-  "menhi-global-wide.png",
+  "mehi-global-wide.png",
   "home page 1.png.png",
   "homepage2.jpg.png",
   "homepage3.jpg.jpeg",
@@ -501,7 +501,7 @@ function HomepageImageSlider({ onActiveImageChange }) {
           key={source}
           className={cn("homepage-image-slide", source === homepageImages[0] && "homepage-globe-slide", source === activeImage && "homepage-image-slide-active")}
         >
-          {source === homepageImages[0] && <source media="(max-width: 767px)" srcSet={import.meta.env.BASE_URL + "images/menhi-global-network.png"} />}
+          {source === homepageImages[0] && <source media="(max-width: 767px)" srcSet={import.meta.env.BASE_URL + "images/mehi-global-network.png"} />}
           <img src={source} alt="" decoding="async" fetchPriority={index === 0 ? "high" : "auto"} />
         </picture>
       ))}
@@ -525,7 +525,7 @@ function DashboardMockup() {
       <div className="glass-panel overflow-hidden rounded-2xl border border-white/[0.16]">
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <div>
-            <p className="text-sm font-bold text-cyanbrand-300">Menhi Command Center</p>
+            <p className="text-sm font-bold text-cyanbrand-300">mehi Command Center</p>
             <p className="text-xs text-slate-300">ERP + AI + Security telemetry</p>
           </div>
           <div className="flex gap-2"><span className="dot bg-rose-400" /><span className="dot bg-amber-300" /><span className="dot bg-emerald-400" /></div>
@@ -575,7 +575,7 @@ function TrustProof() {
   ];
 
   return (
-    <Section className="bg-white dark:bg-navy-900/50" eyebrow="Built For Trust" title="A technology partner visitors can evaluate in minutes" text="Menhi presents the signals enterprise buyers expect: process clarity, security awareness, measurable outcomes and responsive delivery. The website is designed to help decision-makers quickly understand what we do, how we work and why we are credible.">
+    <Section className="bg-white dark:bg-navy-900/50" eyebrow="Built For Trust" title="A technology partner visitors can evaluate in minutes" text="mehi presents the signals enterprise buyers expect: process clarity, security awareness, measurable outcomes and responsive delivery. The website is designed to help decision-makers quickly understand what we do, how we work and why we are credible.">
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {proof.map(([title, text], i) => (
           <Reveal key={title} delay={i * 0.04} className="card p-6">
@@ -822,7 +822,7 @@ function Services() {
 
 function ServiceTrustIntro() {
   return (
-    <Section className="bg-white dark:bg-navy-900/50" eyebrow="How We Help" title="Services shaped for real business operations" text="Menhi Global Technology Private Limited helps organizations replace disconnected tools, manual approvals and security blind spots with integrated systems. Whether a client needs Odoo ERP, CRM, AI automation, cloud infrastructure or cybersecurity support, we focus on practical implementation, clean ownership and measurable improvement.">
+    <Section className="bg-white dark:bg-navy-900/50" eyebrow="How We Help" title="Services shaped for real business operations" text="mehi Global Technology Private Limited helps organizations replace disconnected tools, manual approvals and security blind spots with integrated systems. Whether a client needs Odoo ERP, CRM, AI automation, cloud infrastructure or cybersecurity support, we focus on practical implementation, clean ownership and measurable improvement.">
       <div className="grid gap-5 lg:grid-cols-3">
         {[
           ["Business process depth", "We document how teams sell, procure, fulfill, support and report before designing systems."],
@@ -1034,7 +1034,7 @@ function SingleServiceTrust({ service }) {
           <p className="eyebrow text-cyanbrand-300">Trust Line</p>
           <h3 className="mt-4 font-heading text-3xl font-bold leading-tight">"{details.line}"</h3>
           <p className="mt-5 leading-8 text-slate-200">
-            Menhi Global Technology Private Limited works like a long-term technology partner: clear discovery, practical implementation, security awareness, documentation and support after go-live.
+            mehi Global Technology Private Limited works like a long-term technology partner: clear discovery, practical implementation, security awareness, documentation and support after go-live.
           </p>
         </Reveal>
         <Reveal className="grid gap-4 sm:grid-cols-2">
@@ -1284,7 +1284,7 @@ function Industries() {
 function About() {
   return (
     <>
-      <PageHero eyebrow="About Us" title="Menhi Global Technology Private Limited helps modern businesses operate securely at scale" text="Our mission is to make enterprise systems more intelligent, connected and resilient for global clients." />
+      <PageHero eyebrow="About Us" title="mehi Global Technology Private Limited helps modern businesses operate securely at scale" text="Our mission is to make enterprise systems more intelligent, connected and resilient for global clients." />
       <Section>
         <div className="grid gap-6 lg:grid-cols-2">
           <Reveal className="card p-8"><h2 className="heading-md">Mission</h2><p className="mt-4 leading-8 text-slate-600 dark:text-slate-300">Deliver secure, practical and measurable digital transformation through ERP, AI, cloud and cybersecurity services.</p></Reveal>
@@ -1293,7 +1293,7 @@ function About() {
       </Section>
       <Section className="bg-white dark:bg-navy-900/50" eyebrow="Founder Message" title="Technology should simplify growth, not create new complexity">
         <Reveal className="mx-auto max-w-4xl text-center text-xl leading-9 text-slate-700 dark:text-slate-200">
-          "We built Menhi around a simple belief: enterprise technology must be secure, usable and tied to business outcomes. Our teams combine consulting clarity with hands-on engineering so clients can move with confidence."
+          "We built mehi around a simple belief: enterprise technology must be secure, usable and tied to business outcomes. Our teams combine consulting clarity with hands-on engineering so clients can move with confidence."
         </Reveal>
       </Section>
       <Section eyebrow="Global Delivery Model" title="Structured delivery for distributed teams">
@@ -1380,7 +1380,7 @@ function Contact() {
           <Reveal className="space-y-5">
             <div className="card p-6">
               <h2 className="heading-md">Business Contact</h2>
-              <p className="mt-4 flex gap-3 text-slate-600 dark:text-slate-300"><Mail className="text-cyan-500" /> contact@amsuntechnology.com</p>
+              <p className="mt-4 flex gap-3 text-slate-600 dark:text-slate-300"><Mail className="text-cyan-500" /> contact@mehitechnology.com</p>
               <p className="mt-3 flex gap-3 text-slate-600 dark:text-slate-300"><MessageCircle className="text-cyan-500" /> WhatsApp consultation available</p>
               <p className="mt-3 flex gap-3 text-slate-600 dark:text-slate-300"><CalendarCheck className="text-cyan-500" /> Calendly integration placeholder</p>
             </div>
@@ -1442,7 +1442,7 @@ function ContactCTA() {
 
 function FloatingContact() {
   return (
-    <Link to="/contact" className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-cyanbrand-500 text-navy-950 shadow-glow transition hover:-translate-y-1" aria-label="Contact Menhi Global Technology">
+    <Link to="/contact" className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-cyanbrand-500 text-navy-950 shadow-glow transition hover:-translate-y-1" aria-label="Contact mehi Global Technology">
       <MessageCircle size={24} />
     </Link>
   );
@@ -1454,7 +1454,7 @@ function Footer() {
     <footer className="bg-navy-950 text-white">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <Link to="/" aria-label="Menhi Global Technology home"><Brand /></Link>
+          <Link to="/" aria-label="mehi Global Technology home"><Brand /></Link>
           <p className="mt-3 leading-7 text-slate-300">Secure AI-Powered ERP, Cloud & Cybersecurity Solutions for global businesses.</p>
         </div>
         <FooterList title="Quick Links" items={navItems.map(([label, href]) => ({ label, href }))} />
@@ -1476,7 +1476,7 @@ function Footer() {
           <div className="mt-5 flex gap-3 text-sm text-slate-300"><a href="https://linkedin.com" className="hover:text-cyanbrand-300">LinkedIn</a><a href="https://x.com" className="hover:text-cyanbrand-300">X</a></div>
         </div>
       </div>
-      <div className="border-t border-white/10 px-4 py-5 text-center text-sm text-slate-400">© 2026 Menhi Global Technology Private Limited. All rights reserved.</div>
+      <div className="border-t border-white/10 px-4 py-5 text-center text-sm text-slate-400">© 2026 mehi Global Technology Private Limited. All rights reserved.</div>
     </footer>
   );
 }

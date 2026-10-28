@@ -337,173 +337,173 @@ body {
   }
 }
 
-/* Menhi identity: navy, gold and the supplied peacock mark. */
-.menhi-brand { display:flex; align-items:center; gap:14px; }
-.menhi-brand .menhi-logo { width:68px; height:78px; object-fit:contain; flex-shrink:0; }
-.menhi-wordmark { display:block; max-width:330px; color:#092550; font:bold 17px/1.35 Georgia,serif; border-bottom:2px solid #d1ad55; padding-bottom:7px; }
-.menhi-wordmark > span { display:block; font:9px/1.5 Inter,sans-serif; text-transform:uppercase; letter-spacing:2px; margin-top:7px; }
-.menhi-header { background:#fff; }
-.menhi-header nav { gap:18px; }
-.menhi-header nav > div:last-child > a { background:transparent; border:1px solid #c99c35; border-radius:30px; color:#092550; white-space:nowrap; box-shadow:none; }
-.menhi-hero { background:#05254a; color:#fff; }
-.menhi-hero-inner { position:relative; z-index:3; max-width:1440px; margin:auto; padding:66px 40px 72px; min-height:450px; display:flex; align-items:center; }
-.menhi-hero-copy { max-width:760px; }
-.menhi-eyebrow { color:#ebc66d; font-size:11px; text-transform:uppercase; letter-spacing:3px; margin-bottom:20px; }
-.menhi-hero h1 { font:bold clamp(38px,4.3vw,66px)/1.08 Georgia,serif; letter-spacing:-1px; }
-.menhi-hero h1 span { display:block; color:#f1c965; }
-.menhi-intro { max-width:600px; font-size:21px; line-height:1.5; color:#e0e7f1; margin-top:18px; }
-.menhi-actions { display:flex; flex-wrap:wrap; gap:16px; margin-top:28px; }
-.menhi-primary,.menhi-secondary { display:inline-flex; align-items:center; justify-content:center; gap:14px; border-radius:30px; padding:13px 28px; font-weight:700; }
-.menhi-primary { background:linear-gradient(#ffe399,#e8b64b); color:#082149; }
-.menhi-secondary { border:2px solid #d6bf81; color:white; }
-.menhi-primary:hover,.menhi-secondary:hover { filter:brightness(1.1); }
-.menhi-hero .homepage-image-slider { background:#05254a; }
-.menhi-hero .homepage-image-slide { object-position:right center; }
-.menhi-hero .homepage-image-overlay { background:linear-gradient(90deg,#041d3b 0%,rgba(4,29,59,.96) 32%,rgba(4,29,59,.70) 56%,rgba(4,29,59,.13) 100%); }
-footer .menhi-wordmark { color:white; font-size:15px; }
-footer .menhi-brand { align-items:flex-start; }
-footer .menhi-brand .menhi-logo { width:60px; height:76px; }
-.dark .menhi-header { background:#061a35; }
-.dark .menhi-header .menhi-wordmark,.dark .menhi-header nav > div:last-child > a { color:#fff; }
+/* mehi identity: navy, gold and the supplied peacock mark. */
+.mehi-brand { display:flex; align-items:center; gap:14px; }
+.mehi-brand .mehi-logo { width:68px; height:78px; object-fit:contain; flex-shrink:0; }
+.mehi-wordmark { display:block; max-width:330px; color:#092550; font:bold 17px/1.35 Georgia,serif; border-bottom:2px solid #d1ad55; padding-bottom:7px; }
+.mehi-wordmark > span { display:block; font:9px/1.5 Inter,sans-serif; text-transform:uppercase; letter-spacing:2px; margin-top:7px; }
+.mehi-header { background:#fff; }
+.mehi-header nav { gap:18px; }
+.mehi-header nav > div:last-child > a { background:transparent; border:1px solid #c99c35; border-radius:30px; color:#092550; white-space:nowrap; box-shadow:none; }
+.mehi-hero { background:#05254a; color:#fff; }
+.mehi-hero-inner { position:relative; z-index:3; max-width:1440px; margin:auto; padding:66px 40px 72px; min-height:450px; display:flex; align-items:center; }
+.mehi-hero-copy { max-width:760px; }
+.mehi-eyebrow { color:#ebc66d; font-size:11px; text-transform:uppercase; letter-spacing:3px; margin-bottom:20px; }
+.mehi-hero h1 { font:bold clamp(38px,4.3vw,66px)/1.08 Georgia,serif; letter-spacing:-1px; }
+.mehi-hero h1 span { display:block; color:#f1c965; }
+.mehi-intro { max-width:600px; font-size:21px; line-height:1.5; color:#e0e7f1; margin-top:18px; }
+.mehi-actions { display:flex; flex-wrap:wrap; gap:16px; margin-top:28px; }
+.mehi-primary,.mehi-secondary { display:inline-flex; align-items:center; justify-content:center; gap:14px; border-radius:30px; padding:13px 28px; font-weight:700; }
+.mehi-primary { background:linear-gradient(#ffe399,#e8b64b); color:#082149; }
+.mehi-secondary { border:2px solid #d6bf81; color:white; }
+.mehi-primary:hover,.mehi-secondary:hover { filter:brightness(1.1); }
+.mehi-hero .homepage-image-slider { background:#05254a; }
+.mehi-hero .homepage-image-slide { object-position:right center; }
+.mehi-hero .homepage-image-overlay { background:linear-gradient(90deg,#041d3b 0%,rgba(4,29,59,.96) 32%,rgba(4,29,59,.70) 56%,rgba(4,29,59,.13) 100%); }
+footer .mehi-wordmark { color:white; font-size:15px; }
+footer .mehi-brand { align-items:flex-start; }
+footer .mehi-brand .mehi-logo { width:60px; height:76px; }
+.dark .mehi-header { background:#061a35; }
+.dark .mehi-header .mehi-wordmark,.dark .mehi-header nav > div:last-child > a { color:#fff; }
 @media (min-width:1024px) and (max-width:1350px) {
-  .menhi-header nav { gap:8px; padding-inline:20px; }
-  .menhi-header .menhi-wordmark { max-width:230px; font-size:13px; }
-  .menhi-header nav > div > a,.menhi-header nav > div > div > a { padding-inline:7px; font-size:12px; }
-  .menhi-header .menhi-brand { gap:8px; }
-  .menhi-header .menhi-brand .menhi-logo { width:48px; height:62px; }
+  .mehi-header nav { gap:8px; padding-inline:20px; }
+  .mehi-header .mehi-wordmark { max-width:230px; font-size:13px; }
+  .mehi-header nav > div > a,.mehi-header nav > div > div > a { padding-inline:7px; font-size:12px; }
+  .mehi-header .mehi-brand { gap:8px; }
+  .mehi-header .mehi-brand .mehi-logo { width:48px; height:62px; }
 }
 @media (max-width:640px) {
-  .menhi-brand { gap:8px; }
-  .menhi-brand .menhi-logo { width:48px; height:58px; }
-  .menhi-wordmark { max-width:205px; font-size:12px; }
-  .menhi-wordmark > span { font-size:7px; letter-spacing:1px; }
-  .menhi-header nav { gap:8px; padding:8px 12px; }
-  .menhi-header .icon-button { width:32px; height:36px; }
-  .menhi-hero-inner { padding:50px 22px; min-height:470px; }
-  .menhi-eyebrow { font-size:9px; letter-spacing:1.6px; }
-  .menhi-intro { font-size:18px; }
-  .menhi-actions { gap:12px; }
-  .menhi-primary,.menhi-secondary { padding:12px 22px; font-size:14px; }
-  .menhi-hero .homepage-image-overlay { background:linear-gradient(90deg,rgba(4,29,59,.96),rgba(4,29,59,.74)); }
+  .mehi-brand { gap:8px; }
+  .mehi-brand .mehi-logo { width:48px; height:58px; }
+  .mehi-wordmark { max-width:205px; font-size:12px; }
+  .mehi-wordmark > span { font-size:7px; letter-spacing:1px; }
+  .mehi-header nav { gap:8px; padding:8px 12px; }
+  .mehi-header .icon-button { width:32px; height:36px; }
+  .mehi-hero-inner { padding:50px 22px; min-height:470px; }
+  .mehi-eyebrow { font-size:9px; letter-spacing:1.6px; }
+  .mehi-intro { font-size:18px; }
+  .mehi-actions { gap:12px; }
+  .mehi-primary,.mehi-secondary { padding:12px 22px; font-size:14px; }
+  .mehi-hero .homepage-image-overlay { background:linear-gradient(90deg,rgba(4,29,59,.96),rgba(4,29,59,.74)); }
 }
-.menhi-services { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; max-width:1440px; margin:auto; padding:24px 40px; }
-.menhi-service { position:relative; display:flex; align-items:flex-start; gap:16px; padding:24px 20px 34px; border:1px solid #dfebf5; border-radius:12px; background:#edf6ff; color:#092550; transition:transform .2s; }
-.menhi-service:nth-child(2) { background:#edfafa; border-color:#dceeee; }
-.menhi-service:nth-child(3) { background:#fcf8ef; border-color:#f1e9d7; }
-.menhi-service:nth-child(4) { background:#f3f0ff; border-color:#e2dcf5; }
-.menhi-service > svg:first-child { flex-shrink:0; margin-top:3px; }
-.menhi-service h2 { font-size:16px; font-weight:800; margin-bottom:6px; }
-.menhi-service p { font-size:13px; line-height:1.6; color:#475569; }
-.menhi-service-arrow { position:absolute; bottom:12px; right:16px; }
-.menhi-service:hover { transform:translateY(-3px); }
-@media(max-width:1100px) { .menhi-services { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:640px) { .menhi-services { padding:20px; gap:12px; grid-template-columns:1fr; } }
-@media(max-width:380px) { .menhi-header .menhi-wordmark { max-width:150px; font-size:10px; } .menhi-header .menhi-wordmark > span { font-size:6px; } }
+.mehi-services { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; max-width:1440px; margin:auto; padding:24px 40px; }
+.mehi-service { position:relative; display:flex; align-items:flex-start; gap:16px; padding:24px 20px 34px; border:1px solid #dfebf5; border-radius:12px; background:#edf6ff; color:#092550; transition:transform .2s; }
+.mehi-service:nth-child(2) { background:#edfafa; border-color:#dceeee; }
+.mehi-service:nth-child(3) { background:#fcf8ef; border-color:#f1e9d7; }
+.mehi-service:nth-child(4) { background:#f3f0ff; border-color:#e2dcf5; }
+.mehi-service > svg:first-child { flex-shrink:0; margin-top:3px; }
+.mehi-service h2 { font-size:16px; font-weight:800; margin-bottom:6px; }
+.mehi-service p { font-size:13px; line-height:1.6; color:#475569; }
+.mehi-service-arrow { position:absolute; bottom:12px; right:16px; }
+.mehi-service:hover { transform:translateY(-3px); }
+@media(max-width:1100px) { .mehi-services { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:640px) { .mehi-services { padding:20px; gap:12px; grid-template-columns:1fr; } }
+@media(max-width:380px) { .mehi-header .mehi-wordmark { max-width:150px; font-size:10px; } .mehi-header .mehi-wordmark > span { font-size:6px; } }
 
 /* Shared service cards and responsive typography. */
-.menhi-hero-inner { max-width:1600px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:12px; padding:38px 32px 38px 5%; min-height:480px; }
-.menhi-hero-copy { position:relative; z-index:2; }
-.menhi-hero h1 { font-size:clamp(38px,4vw,64px); }
-.menhi-hero .homepage-image-slider { position:relative; inset:auto; width:100%; aspect-ratio:3/2; border-radius:4px; align-self:center; }
-.menhi-hero .homepage-image-slide { object-fit:cover; object-position:center; }
-.menhi-hero .homepage-image-slide:first-child { object-fit:contain; }
-.menhi-hero .homepage-image-overlay { background:linear-gradient(90deg,#05254a,transparent 9%); }
-.menhi-services { grid-template-columns:repeat(3,minmax(0,1fr)); }
-.menhi-service { align-items:center; padding:22px 48px 22px 20px; min-height:150px; }
-.menhi-service > svg:first-child { width:58px; height:64px; padding:12px; border-radius:12px; background:#d5e9ff; }
-.menhi-service:nth-child(2) > svg:first-child { background:#d4f0f2; color:#085664; }
-.menhi-service:nth-child(3) > svg:first-child { background:#f8ecd5; color:#b47316; }
-.menhi-service:nth-child(4) > svg:first-child { background:#e3dcfc; }
-.menhi-service:nth-child(5) { background:#f0f5ff; border-color:#dce5f5; }
-.menhi-service:nth-child(5) > svg:first-child { background:#dce7ff; }
-.menhi-service:nth-child(6) { background:#eef9f3; border-color:#d8eee1; }
-.menhi-service:nth-child(6) > svg:first-child { background:#d6f0e1; color:#247650; }
-.menhi-service-arrow { top:50%; bottom:auto; transform:translateY(-50%); }
-@media(max-width:1100px) { .menhi-services { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+.mehi-hero-inner { max-width:1600px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:12px; padding:38px 32px 38px 5%; min-height:480px; }
+.mehi-hero-copy { position:relative; z-index:2; }
+.mehi-hero h1 { font-size:clamp(38px,4vw,64px); }
+.mehi-hero .homepage-image-slider { position:relative; inset:auto; width:100%; aspect-ratio:3/2; border-radius:4px; align-self:center; }
+.mehi-hero .homepage-image-slide { object-fit:cover; object-position:center; }
+.mehi-hero .homepage-image-slide:first-child { object-fit:contain; }
+.mehi-hero .homepage-image-overlay { background:linear-gradient(90deg,#05254a,transparent 9%); }
+.mehi-services { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.mehi-service { align-items:center; padding:22px 48px 22px 20px; min-height:150px; }
+.mehi-service > svg:first-child { width:58px; height:64px; padding:12px; border-radius:12px; background:#d5e9ff; }
+.mehi-service:nth-child(2) > svg:first-child { background:#d4f0f2; color:#085664; }
+.mehi-service:nth-child(3) > svg:first-child { background:#f8ecd5; color:#b47316; }
+.mehi-service:nth-child(4) > svg:first-child { background:#e3dcfc; }
+.mehi-service:nth-child(5) { background:#f0f5ff; border-color:#dce5f5; }
+.mehi-service:nth-child(5) > svg:first-child { background:#dce7ff; }
+.mehi-service:nth-child(6) { background:#eef9f3; border-color:#d8eee1; }
+.mehi-service:nth-child(6) > svg:first-child { background:#d6f0e1; color:#247650; }
+.mehi-service-arrow { top:50%; bottom:auto; transform:translateY(-50%); }
+@media(max-width:1100px) { .mehi-services { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:767px) {
-  .menhi-hero-inner { display:flex; flex-direction:column; padding:36px 0 0; gap:14px; min-height:0; }
-  .menhi-hero-copy { padding-inline:22px; text-align:center; width:100%; max-width:650px; }
-  .menhi-hero h1 { font-size:clamp(33px,6.9vw,52px); letter-spacing:-.6px; }
-  .menhi-eyebrow { font-size:clamp(8px,1.6vw,11px); letter-spacing:2px; line-height:1.8; margin-bottom:16px; }
-  .menhi-intro { font-size:clamp(16px,3.1vw,21px); margin:14px auto 0; }
-  .menhi-actions { flex-direction:column; align-items:center; gap:12px; margin-top:20px; }
-  .menhi-primary { width:min(100%,360px); }
-  .menhi-secondary { width:min(86%,310px); }
-  .menhi-hero .homepage-image-slider { border-radius:0; aspect-ratio:3/2; }
-  .menhi-hero .homepage-image-overlay { background:linear-gradient(#05254a,transparent 10%); }
+  .mehi-hero-inner { display:flex; flex-direction:column; padding:36px 0 0; gap:14px; min-height:0; }
+  .mehi-hero-copy { padding-inline:22px; text-align:center; width:100%; max-width:650px; }
+  .mehi-hero h1 { font-size:clamp(33px,6.9vw,52px); letter-spacing:-.6px; }
+  .mehi-eyebrow { font-size:clamp(8px,1.6vw,11px); letter-spacing:2px; line-height:1.8; margin-bottom:16px; }
+  .mehi-intro { font-size:clamp(16px,3.1vw,21px); margin:14px auto 0; }
+  .mehi-actions { flex-direction:column; align-items:center; gap:12px; margin-top:20px; }
+  .mehi-primary { width:min(100%,360px); }
+  .mehi-secondary { width:min(86%,310px); }
+  .mehi-hero .homepage-image-slider { border-radius:0; aspect-ratio:3/2; }
+  .mehi-hero .homepage-image-overlay { background:linear-gradient(#05254a,transparent 10%); }
 }
 @media(max-width:640px) {
-  .menhi-services { grid-template-columns:1fr; padding:18px 16px; }
-  .menhi-service { min-height:110px; gap:14px; padding:16px 44px 16px 14px; }
-  .menhi-service h2 { font-size:16px; }
-  .menhi-service p { font-size:13px; line-height:1.5; }
-  .menhi-header .menhi-wordmark > span { display:none; }
-  .menhi-header .menhi-wordmark { border-bottom:0; border-left:1px solid #c5bcaa; padding:0 0 0 10px; }
+  .mehi-services { grid-template-columns:1fr; padding:18px 16px; }
+  .mehi-service { min-height:110px; gap:14px; padding:16px 44px 16px 14px; }
+  .mehi-service h2 { font-size:16px; }
+  .mehi-service p { font-size:13px; line-height:1.5; }
+  .mehi-header .mehi-wordmark > span { display:none; }
+  .mehi-header .mehi-wordmark { border-bottom:0; border-left:1px solid #c5bcaa; padding:0 0 0 10px; }
 }
 
 /* Full-bleed slideshow with a transparent readability layer. */
-.menhi-hero { min-height:calc(100svh - 103px); }
-.menhi-hero-inner { position:relative; display:flex; align-items:center; max-width:1600px; min-height:calc(100svh - 103px); padding:64px 5%; z-index:3; }
-.menhi-hero-copy { max-width:710px; width:52%; padding:0; text-align:left; text-shadow:0 2px 18px rgba(0,10,30,.5); }
-.menhi-hero .homepage-image-slider { position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto; border-radius:0; }
-.menhi-hero .homepage-image-slide,.menhi-hero .homepage-image-slide:first-child { width:100%; height:100%; object-fit:cover; object-position:right center; }
-.menhi-hero .homepage-image-overlay { background:linear-gradient(90deg,rgba(2,20,44,.88) 0%,rgba(2,20,44,.77) 30%,rgba(2,20,44,.4) 52%,rgba(2,20,44,.04) 75%); }
-.menhi-hero h1 { font-size:clamp(38px,4.2vw,66px); }
+.mehi-hero { min-height:calc(100svh - 103px); }
+.mehi-hero-inner { position:relative; display:flex; align-items:center; max-width:1600px; min-height:calc(100svh - 103px); padding:64px 5%; z-index:3; }
+.mehi-hero-copy { max-width:710px; width:52%; padding:0; text-align:left; text-shadow:0 2px 18px rgba(0,10,30,.5); }
+.mehi-hero .homepage-image-slider { position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto; border-radius:0; }
+.mehi-hero .homepage-image-slide,.mehi-hero .homepage-image-slide:first-child { width:100%; height:100%; object-fit:cover; object-position:right center; }
+.mehi-hero .homepage-image-overlay { background:linear-gradient(90deg,rgba(2,20,44,.88) 0%,rgba(2,20,44,.77) 30%,rgba(2,20,44,.4) 52%,rgba(2,20,44,.04) 75%); }
+.mehi-hero h1 { font-size:clamp(38px,4.2vw,66px); }
 @media(max-width:767px) {
-  .menhi-hero,.menhi-hero-inner { min-height:calc(100svh - 75px); }
-  .menhi-hero-inner { padding:42px 22px 64px; justify-content:center; align-items:flex-start; }
-  .menhi-hero-copy { width:100%; max-width:560px; text-align:center; }
-  .menhi-hero h1 { font-size:clamp(34px,7vw,52px); }
-  .menhi-hero .homepage-image-slide { object-position:70% center; }
-  .menhi-hero .homepage-image-slide:first-child { object-position:78% center; }
-  .menhi-hero .homepage-image-overlay { background:linear-gradient(180deg,rgba(2,20,44,.88) 0%,rgba(2,20,44,.78) 40%,rgba(2,20,44,.38) 70%,rgba(2,20,44,.12) 100%); }
+  .mehi-hero,.mehi-hero-inner { min-height:calc(100svh - 75px); }
+  .mehi-hero-inner { padding:42px 22px 64px; justify-content:center; align-items:flex-start; }
+  .mehi-hero-copy { width:100%; max-width:560px; text-align:center; }
+  .mehi-hero h1 { font-size:clamp(34px,7vw,52px); }
+  .mehi-hero .homepage-image-slide { object-position:70% center; }
+  .mehi-hero .homepage-image-slide:first-child { object-position:78% center; }
+  .mehi-hero .homepage-image-overlay { background:linear-gradient(180deg,rgba(2,20,44,.88) 0%,rgba(2,20,44,.78) 40%,rgba(2,20,44,.38) 70%,rgba(2,20,44,.12) 100%); }
 }
 
 /* Art-directed mobile globe: every badge fits inside the screen. */
 .homepage-image-slide > img { display:block; width:100%; height:100%; object-fit:inherit; object-position:inherit; }
-.menhi-brand .menhi-logo {
+.mehi-brand .mehi-logo {
   display:block;
   border-radius:0;
   background:transparent;
   opacity:1;
   filter:brightness(1.12) contrast(1.16) saturate(1.12) drop-shadow(0 1px 1px rgba(5,37,74,.22));
 }
-.dark .menhi-brand .menhi-logo,
-footer .menhi-brand .menhi-logo {
+.dark .mehi-brand .mehi-logo,
+footer .mehi-brand .mehi-logo {
   filter:brightness(1.45) contrast(1.08) saturate(1.15) drop-shadow(0 0 1px rgba(255,232,177,.85));
 }
-.dark .menhi-wordmark { color:#ffe3a0; border-color:#e5bd64; }
-.dark .menhi-header .menhi-wordmark { color:#ffe3a0; }
-footer .menhi-wordmark { color:#ffe3a0; }
+.dark .mehi-wordmark { color:#ffe3a0; border-color:#e5bd64; }
+.dark .mehi-header .mehi-wordmark { color:#ffe3a0; }
+footer .mehi-wordmark { color:#ffe3a0; }
 /* Mobile hero fits the copy and full image into the first screen. */
-.menhi-ambient { display:none; }
+.mehi-ambient { display:none; }
 @media(max-width:767px) {
-  .menhi-hero { display:grid; grid-template-rows:auto minmax(0,1fr); height:calc(100svh - 75px); min-height:460px; overflow:visible; }
-  .menhi-hero-inner { order:0; width:100%; min-height:0; padding:18px 18px 8px; justify-content:flex-start; gap:0; }
-  .menhi-hero-copy { position:relative; z-index:1; width:100%; max-width:560px; text-align:center; }
-  .menhi-hero .menhi-eyebrow { margin-bottom:10px; font-size:8px; letter-spacing:1.4px; line-height:1.6; }
-  .menhi-hero h1 { font-size:clamp(28px,6.5vw,42px); line-height:1.07; }
-  .menhi-hero .menhi-intro { margin-top:10px; font-size:15px; line-height:1.45; }
-  .menhi-hero .menhi-actions { margin-top:14px; gap:8px; }
-  .menhi-hero .menhi-primary,.menhi-hero .menhi-secondary { padding:10px 20px; font-size:13px; min-height:40px; }
-  .menhi-hero .homepage-image-slider { order:1; position:relative; inset:auto; width:100%; height:100%; min-height:0; aspect-ratio:auto; align-self:stretch; background:#05254a; border-radius:0; overflow:hidden; }
-  .menhi-hero .homepage-image-slide,
-  .menhi-hero .homepage-image-slide:first-child,
-  .menhi-hero .homepage-globe-slide,
-  .menhi-hero .homepage-globe-slide:first-child { width:100%; height:100%; object-fit:contain; object-position:center top; background:transparent; }
-  .menhi-hero .homepage-image-slide > img { width:100%; height:100%; object-fit:contain; object-position:center top; }
-  .menhi-hero .homepage-image-overlay { display:none; }
-  .menhi-ambient { display:block; position:absolute; inset:0; overflow:hidden; pointer-events:none; mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.8) 45%,transparent 100%); -webkit-mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.8) 45%,transparent 100%); }
-  .menhi-ambient-slide { position:absolute; inset:-28px; background-size:cover; background-position:center top; filter:blur(22px) saturate(1.2); opacity:0; transition:opacity 1.4s cubic-bezier(.4,0,.2,1); }
-  .menhi-ambient-active { opacity:.65; }
+  .mehi-hero { display:grid; grid-template-rows:auto minmax(0,1fr); height:calc(100svh - 75px); min-height:460px; overflow:visible; }
+  .mehi-hero-inner { order:0; width:100%; min-height:0; padding:18px 18px 8px; justify-content:flex-start; gap:0; }
+  .mehi-hero-copy { position:relative; z-index:1; width:100%; max-width:560px; text-align:center; }
+  .mehi-hero .mehi-eyebrow { margin-bottom:10px; font-size:8px; letter-spacing:1.4px; line-height:1.6; }
+  .mehi-hero h1 { font-size:clamp(28px,6.5vw,42px); line-height:1.07; }
+  .mehi-hero .mehi-intro { margin-top:10px; font-size:15px; line-height:1.45; }
+  .mehi-hero .mehi-actions { margin-top:14px; gap:8px; }
+  .mehi-hero .mehi-primary,.mehi-hero .mehi-secondary { padding:10px 20px; font-size:13px; min-height:40px; }
+  .mehi-hero .homepage-image-slider { order:1; position:relative; inset:auto; width:100%; height:100%; min-height:0; aspect-ratio:auto; align-self:stretch; background:#05254a; border-radius:0; overflow:hidden; }
+  .mehi-hero .homepage-image-slide,
+  .mehi-hero .homepage-image-slide:first-child,
+  .mehi-hero .homepage-globe-slide,
+  .mehi-hero .homepage-globe-slide:first-child { width:100%; height:100%; object-fit:contain; object-position:center top; background:transparent; }
+  .mehi-hero .homepage-image-slide > img { width:100%; height:100%; object-fit:contain; object-position:center top; }
+  .mehi-hero .homepage-image-overlay { display:none; }
+  .mehi-ambient { display:block; position:absolute; inset:0; overflow:hidden; pointer-events:none; mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.8) 45%,transparent 100%); -webkit-mask-image:linear-gradient(to top,#000 0%,rgba(0,0,0,.8) 45%,transparent 100%); }
+  .mehi-ambient-slide { position:absolute; inset:-28px; background-size:cover; background-position:center top; filter:blur(22px) saturate(1.2); opacity:0; transition:opacity 1.4s cubic-bezier(.4,0,.2,1); }
+  .mehi-ambient-active { opacity:.65; }
 }
 @media(max-width:767px) and (max-height:650px) {
-  .menhi-hero-inner { padding-top:12px; }
-  .menhi-hero h1 { font-size:28px; }
-  .menhi-hero .menhi-eyebrow { margin-bottom:6px; }
-  .menhi-hero .menhi-intro { font-size:14px; margin-top:8px; }
-  .menhi-hero .menhi-actions { margin-top:10px; gap:6px; }
+  .mehi-hero-inner { padding-top:12px; }
+  .mehi-hero h1 { font-size:28px; }
+  .mehi-hero .mehi-eyebrow { margin-bottom:6px; }
+  .mehi-hero .mehi-intro { font-size:14px; margin-top:8px; }
+  .mehi-hero .mehi-actions { margin-top:10px; gap:6px; }
 }
 @media(min-width:641px) and (max-width:767px) {
-  .menhi-hero { height:calc(100svh - 103px); }
+  .mehi-hero { height:calc(100svh - 103px); }
 }
